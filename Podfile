@@ -7,4 +7,6 @@ target 'Final Project App' do
 
   # Pods for Final Project App
 pod 'Firebase/Analytics'
+pod 'FirebaseUI'
+pod 'Firebase/Auth'
 end

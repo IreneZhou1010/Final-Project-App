@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var rosterButton: UIButton!
     @IBOutlet weak var announcementsButton: UIButton!
