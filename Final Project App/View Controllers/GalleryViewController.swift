@@ -9,10 +9,20 @@ import UIKit
 
 class GalleryViewController: UIViewController {
 
+    var imagePicker: UIImagePickerController!
+    var imageTaken: UIImage!
+    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    
+        
+        imagePicker = UIImagePickerController()
+        
+        imagePicker.sourceType = .photoLibrary
+        
+        self.present(imagePicker, animated: false, completion: nil)
     }
     
 
@@ -26,4 +36,19 @@ class GalleryViewController: UIViewController {
     }
     */
 
+}
+
+extension GalleryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        self.imageTaken = image
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+   
 }

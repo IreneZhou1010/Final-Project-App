@@ -18,6 +18,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var messagingButton: UIButton!
     @IBOutlet weak var galleryButton: UIButton!
     
+    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -50,6 +53,38 @@ class HomeViewController: UIViewController {
     }
 
     
+    @IBAction func pushToRoster(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "RosterViewController") as! RosterViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToAnnoucements(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AnnouncementsViewController") as! AnnouncementsViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToCalendar(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToResources(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ResourcesViewController") as! ResourcesViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToGuru(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "GuruViewController") as! GuruViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToExec(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ExecViewController") as! ExecViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToMessaging(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MessagingViewController") as! MessagingViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
+    @IBAction func pushToGallery(_ sender: Any) {
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "GalleryViewController") as! GalleryViewController
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+    }
     
 }
 
