@@ -22,7 +22,11 @@ class HomeViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        view.addSubview(navBar)
+        title = "Home"
         // Do any additional setup after loading the view.
         rosterButton.layer.cornerRadius = 10
         announcementsButton.layer.cornerRadius = 10

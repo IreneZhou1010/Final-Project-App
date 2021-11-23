@@ -46,8 +46,8 @@
             filePath = "Final Project App/View Controllers/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "pushToRoster(_:)"
             landmarkType = "7">
          </BreakpointContent>
