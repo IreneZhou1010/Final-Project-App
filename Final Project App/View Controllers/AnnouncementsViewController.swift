@@ -19,6 +19,7 @@ class ImportantCell: UITableViewCell{
 }
 class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
     // Content of the announcements. Could later add the  button, but right now could have it added by the app runner people if an announcement needs to be made
     let announcementContent: [String] = ["Register for your USAU membership by 11/30/2021. You need to have registered for USAU in order to play in any games / tournaments next spring.", "Social gathering this Friday @ Waterman.", "Cars for Harvest: \n Car 1: Dori & Gabi \n Car 2: Lindsay and Irene", "Practice will be INDOORS this Thursday!"]
     let announcementType: [AnnouncementType] = [.Important,.Social,.Tournament, .Important]
@@ -35,7 +36,10 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = false
+        self.parent?.title = "ANNOUNCEMENTS"
         
         tableView.delegate = self
         tableView.dataSource = self

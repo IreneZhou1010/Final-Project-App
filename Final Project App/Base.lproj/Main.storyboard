@@ -174,7 +174,7 @@
             <objects>
                 <viewController storyboardIdentifier="AnnouncementsViewController" id="Z5d-IA-loR" customClass="AnnouncementsViewController" customModule="Final_Project_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sl0-SF-Sc2">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="756"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -200,11 +200,11 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="g41-L7-191" firstAttribute="centerX" secondItem="6KS-Lw-Dvy" secondAttribute="centerX" id="KOA-PK-n8R"/>
                                         <constraint firstItem="6KS-Lw-Dvy" firstAttribute="top" secondItem="g41-L7-191" secondAttribute="bottom" constant="8" id="caC-c1-d95"/>
+                                        <constraint firstItem="g41-L7-191" firstAttribute="top" secondItem="TK7-yR-wbw" secondAttribute="topMargin" id="dY3-c4-hzG"/>
+                                        <constraint firstItem="g41-L7-191" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leadingMargin" constant="-20" id="dbq-Xc-7O6"/>
                                         <constraint firstAttribute="trailing" secondItem="6KS-Lw-Dvy" secondAttribute="trailing" constant="8" id="jfA-82-Czg"/>
-                                        <constraint firstItem="g41-L7-191" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leading" id="v5d-kh-qYF"/>
-                                        <constraint firstItem="g41-L7-191" firstAttribute="top" secondItem="TK7-yR-wbw" secondAttribute="topMargin" id="yUs-Yn-oK3"/>
+                                        <constraint firstItem="g41-L7-191" firstAttribute="centerX" secondItem="6KS-Lw-Dvy" secondAttribute="centerX" id="r2t-Hv-1OL"/>
                                         <constraint firstItem="6KS-Lw-Dvy" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leading" constant="8" id="yol-Co-n0r"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -216,6 +216,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Announcements" id="xI9-Km-5iQ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="Sl0-SF-Sc2" id="lYo-xW-R2e"/>
                     </connections>
@@ -618,7 +619,7 @@
                                 <state key="normal" title="Announcements"/>
                                 <connections>
                                     <action selector="pushToAnnoucements:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JyI-AX-0ux"/>
-                                    <segue destination="Z5d-IA-loR" kind="show" id="oXd-nK-pDn"/>
+                                    <segue destination="Z5d-IA-loR" kind="show" id="scq-AO-FfV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqt-OE-KWY">

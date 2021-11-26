@@ -24,9 +24,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70))
+        navBar.largeContentTitle = "HELLO WORLD"
+        navBar.backgroundColor = .systemPurple
+        
         view.addSubview(navBar)
         title = "Home"
+        
         // Do any additional setup after loading the view.
         rosterButton.layer.cornerRadius = 10
         announcementsButton.layer.cornerRadius = 10
@@ -54,15 +58,19 @@ class HomeViewController: UIViewController {
         execButton.layer.borderColor = UIColor.black.cgColor
         messagingButton.layer.borderColor = UIColor.black.cgColor
         galleryButton.layer.borderColor = UIColor.black.cgColor
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     
     @IBAction func pushToRoster(_ sender: Any) {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "RosterViewController") as! RosterViewController
+        
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     @IBAction func pushToAnnoucements(_ sender: Any) {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "AnnouncementsViewController") as! AnnouncementsViewController
+        nextViewController.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     @IBAction func pushToCalendar(_ sender: Any) {
