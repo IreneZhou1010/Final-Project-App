@@ -185,22 +185,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Announcement title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g41-L7-191">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g41-L7-191">
                                             <rect key="frame" x="0.0" y="11" width="390" height="23"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                             <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KS-Lw-Dvy">
-                                            <rect key="frame" x="0.0" y="42" width="390" height="73"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KS-Lw-Dvy">
+                                            <rect key="frame" x="8" y="42" width="374" height="54"/>
                                             <string key="text">This is where the content of an important announcement would go. Somewhat bolded. Crafted in a way that stands out to the user. </string>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="g41-L7-191" firstAttribute="centerX" secondItem="6KS-Lw-Dvy" secondAttribute="centerX" id="KOA-PK-n8R"/>
+                                        <constraint firstItem="6KS-Lw-Dvy" firstAttribute="top" secondItem="g41-L7-191" secondAttribute="bottom" constant="8" id="caC-c1-d95"/>
+                                        <constraint firstAttribute="trailing" secondItem="6KS-Lw-Dvy" secondAttribute="trailing" constant="8" id="jfA-82-Czg"/>
+                                        <constraint firstItem="g41-L7-191" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leading" id="v5d-kh-qYF"/>
+                                        <constraint firstItem="g41-L7-191" firstAttribute="top" secondItem="TK7-yR-wbw" secondAttribute="topMargin" id="yUs-Yn-oK3"/>
+                                        <constraint firstItem="6KS-Lw-Dvy" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leading" constant="8" id="yol-Co-n0r"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="importantText" destination="6KS-Lw-Dvy" id="nvH-Qs-OPX"/>
