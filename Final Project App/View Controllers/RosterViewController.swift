@@ -6,15 +6,83 @@
 //
 
 import UIKit
+import Firebase
 
-class RosterViewController: UIViewController {
+// pull data from firebase to populate
+// let ref = Database.database().reference(withPath: "roster")
+var IHRoster:[String] = []
+var LocaRoster:[String] = []
+private var db = Firestore.firestore()
 
-    // @IBOutlet var rosterView: UIView!
+
+class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var rosterView: UITableView!
+    var Ros = Roster()
     
+    var roster = [[String](),[String]()]
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let viewContainer = UIView(frame: CGRect(x:0, y:0, width: rosterView.frame.width, height: 40))
+        viewContainer.backgroundColor = UIColor.lightGray
+        let labelHeader = UILabel(frame: CGRect(x:0, y:0, width: 200, height: 30))
+
+        labelHeader.textColor = UIColor.white
+        if section == 0{
+            labelHeader.text = " Iron Horse "
+        }
+        if section == 1{
+            labelHeader.text =  " Locamotive"
+        }
+                    
+        viewContainer.addSubview(labelHeader)
+        return viewContainer
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return roster.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0{
+            return roster[section].count
+        }
+        return roster[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rosterCell", for: indexPath)
+        if indexPath.section == 0{
+            cell.textLabel?.text = String(roster[indexPath.section][indexPath.row])
+        }
+        if indexPath.section == 1{
+            cell.textLabel?.text = String(roster[indexPath.section][indexPath.row])
+        }
+        return cell
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Ros.fetchDataIH { result in
+            IHRoster = result
+            self.roster = [IHRoster,LocaRoster]
+        }
+        Ros.fetchDataLoca { result in
+            LocaRoster = result
+            self.roster = [IHRoster,LocaRoster]
+        }
+        
+        
+        self.rosterView.delegate = self
+        self.rosterView.dataSource = self
+        
+        
         //view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.rosterView.reloadData()
     }
     
 

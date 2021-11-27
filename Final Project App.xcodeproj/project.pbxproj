@@ -15,6 +15,7 @@
 		28AC8A0D273A2F74001B8421 /* BootUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC8A0C273A2F73001B8421 /* BootUpViewController.swift */; };
 		28AC8A0F273ADC81001B8421 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC8A0E273ADC81001B8421 /* Utilities.swift */; };
 		28AC8A12273B10EE001B8421 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC8A11273B10EE001B8421 /* Constants.swift */; };
+		6B213AFA27517A270078DE8A /* Roster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B213AF927517A270078DE8A /* Roster.swift */; };
 		6B57E1802736E25300FB39D6 /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B57E17F2736E25300FB39D6 /* RosterViewController.swift */; };
 		6B57E1822736EE7A00FB39D6 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B57E1812736EE7A00FB39D6 /* AnnouncementsViewController.swift */; };
 		6B57E1842736EE9000FB39D6 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B57E1832736EE9000FB39D6 /* CalendarViewController.swift */; };
@@ -41,6 +42,7 @@
 		28AC8A0C273A2F73001B8421 /* BootUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootUpViewController.swift; sourceTree = "<group>"; };
 		28AC8A0E273ADC81001B8421 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		28AC8A11273B10EE001B8421 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6B213AF927517A270078DE8A /* Roster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roster.swift; sourceTree = "<group>"; };
 		6B57E17F2736E25300FB39D6 /* RosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewController.swift; sourceTree = "<group>"; };
 		6B57E1812736EE7A00FB39D6 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
 		6B57E1832736EE9000FB39D6 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				28AC8A0E273ADC81001B8421 /* Utilities.swift */,
 				28AC8A11273B10EE001B8421 /* Constants.swift */,
 				283C8482274D8997005A17AC /* User.swift */,
+				6B213AF927517A270078DE8A /* Roster.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				6B57E1882736EEA900FB39D6 /* GuruViewController.swift in Sources */,
 				283C8483274D8997005A17AC /* User.swift in Sources */,
 				6B6794132730342100447203 /* SceneDelegate.swift in Sources */,
+				6B213AFA27517A270078DE8A /* Roster.swift in Sources */,
 				28AC8A0B273A259A001B8421 /* LoginViewController.swift in Sources */,
 				6B57E1802736E25300FB39D6 /* RosterViewController.swift in Sources */,
 			);
