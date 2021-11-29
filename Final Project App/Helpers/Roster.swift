@@ -15,6 +15,16 @@ class Roster {
     var IH:[String] = []
     var Loca:[String] = []
 
+   
+    func addToIH(name:String){
+        let docRefIH = db.collection("roster").document("IH")
+        docRefIH.setData(["Players" : self.IH])
+    }
+    
+    func addToLoca(name:String){
+        let docRefLoca = db.collection("roster").document("Loca")
+        docRefLoca.setData(["Players" : self.Loca])
+    }
     
     func fetchDataIH (_ completion: @escaping ([String]) -> Void) {
         let docRefIH = db.collection("roster").document("IH")

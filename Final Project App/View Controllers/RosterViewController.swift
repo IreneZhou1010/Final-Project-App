@@ -15,8 +15,13 @@ var LocaRoster:[String] = []
 private var db = Firestore.firestore()
 
 
-class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
     @IBOutlet weak var rosterView: UITableView!
+    
+    @IBOutlet weak var search: UISearchBar!
+    @IBOutlet weak var addIH: UIButton!
+    @IBOutlet weak var addLoca: UIButton!
+    
     var Ros = Roster()
     
     var roster = [[String](),[String]()]
@@ -63,19 +68,22 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.rosterView.delegate = self
+        self.rosterView.dataSource = self
+        search.isHidden = true
         Ros.fetchDataIH { result in
             IHRoster = result
+            self.Ros.IH = IHRoster
             self.roster = [IHRoster,LocaRoster]
         }
         Ros.fetchDataLoca { result in
             LocaRoster = result
+            self.Ros.Loca = LocaRoster
             self.roster = [IHRoster,LocaRoster]
         }
         
         
-        self.rosterView.delegate = self
-        self.rosterView.dataSource = self
+    
         
         
         //view.backgroundColor = UIColor.white
@@ -85,7 +93,55 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.rosterView.reloadData()
     }
     
+    
+    @IBAction func addIHPressed(_ sender: Any) {
+        if (search.isHidden == true){
+            print("add to IH")
+            search.isHidden = false
+            
+        }
+        else{
+            if let name = search.text {
+                Ros.IH.append(name)
+                Ros.addToIH(name: name)
+                roster = [Ros.IH, Ros.Loca]
+            }
+            
+            self.rosterView.reloadData()
+            
+            search.text = ""
+            search.isHidden = true
+        }
+        
+    }
+    
+    
+    @IBAction func addLocaPressed(_ sender: Any) {
+        if (search.isHidden == true){
+            print("add to Loca")
+            search.isHidden = false
+            
+        }
+        else{
+            if let name = search.text {
+                Ros.Loca.append(name)
+                Ros.addToLoca(name: name)
+                roster = [Ros.IH, Ros.Loca]
+            }
+            
+                self.rosterView.reloadData()
+            
 
+            search.text = ""
+            search.isHidden = true
+
+        }
+       
+    }
+    
+
+   
+    
     /*
     // MARK: - Navigation
 
