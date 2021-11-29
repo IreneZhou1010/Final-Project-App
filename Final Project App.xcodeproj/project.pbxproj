@@ -15,6 +15,8 @@
 		28AC8A0D273A2F74001B8421 /* BootUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC8A0C273A2F73001B8421 /* BootUpViewController.swift */; };
 		28AC8A0F273ADC81001B8421 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC8A0E273ADC81001B8421 /* Utilities.swift */; };
 		28AC8A12273B10EE001B8421 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AC8A11273B10EE001B8421 /* Constants.swift */; };
+		4BDA8FDF275490AD00CA8072 /* ResourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA8FDE275490AD00CA8072 /* ResourceCell.swift */; };
+		4BDA8FE127549E2000CA8072 /* ResourceViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDA8FE027549E2000CA8072 /* ResourceViewer.swift */; };
 		6B213AFA27517A270078DE8A /* Roster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B213AF927517A270078DE8A /* Roster.swift */; };
 		6B57E1802736E25300FB39D6 /* RosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B57E17F2736E25300FB39D6 /* RosterViewController.swift */; };
 		6B57E1822736EE7A00FB39D6 /* AnnouncementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B57E1812736EE7A00FB39D6 /* AnnouncementsViewController.swift */; };
@@ -42,6 +44,8 @@
 		28AC8A0C273A2F73001B8421 /* BootUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootUpViewController.swift; sourceTree = "<group>"; };
 		28AC8A0E273ADC81001B8421 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		28AC8A11273B10EE001B8421 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4BDA8FDE275490AD00CA8072 /* ResourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCell.swift; sourceTree = "<group>"; };
+		4BDA8FE027549E2000CA8072 /* ResourceViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewer.swift; sourceTree = "<group>"; };
 		6B213AF927517A270078DE8A /* Roster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roster.swift; sourceTree = "<group>"; };
 		6B57E17F2736E25300FB39D6 /* RosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosterViewController.swift; sourceTree = "<group>"; };
 		6B57E1812736EE7A00FB39D6 /* AnnouncementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				6B67941B2730342200447203 /* LaunchScreen.storyboard */,
 				6B67941E2730342200447203 /* Info.plist */,
 				283C8480274D66B2005A17AC /* CollectionViewCell.swift */,
+				4BDA8FDE275490AD00CA8072 /* ResourceCell.swift */,
+				4BDA8FE027549E2000CA8072 /* ResourceViewer.swift */,
 			);
 			path = "Final Project App";
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				283C8481274D66B2005A17AC /* CollectionViewCell.swift in Sources */,
 				6B57E1842736EE9000FB39D6 /* CalendarViewController.swift in Sources */,
 				28AC8A0F273ADC81001B8421 /* Utilities.swift in Sources */,
+				4BDA8FDF275490AD00CA8072 /* ResourceCell.swift in Sources */,
 				6B6794152730342100447203 /* HomeViewController.swift in Sources */,
 				6B6794112730342100447203 /* AppDelegate.swift in Sources */,
 				6B57E18C2736EEC400FB39D6 /* MessagingViewController.swift in Sources */,
@@ -306,6 +313,7 @@
 				6B57E18A2736EEB400FB39D6 /* ExecViewController.swift in Sources */,
 				6B57E1882736EEA900FB39D6 /* GuruViewController.swift in Sources */,
 				283C8483274D8997005A17AC /* User.swift in Sources */,
+				4BDA8FE127549E2000CA8072 /* ResourceViewer.swift in Sources */,
 				6B6794132730342100447203 /* SceneDelegate.swift in Sources */,
 				6B213AFA27517A270078DE8A /* Roster.swift in Sources */,
 				28AC8A0B273A259A001B8421 /* LoginViewController.swift in Sources */,
