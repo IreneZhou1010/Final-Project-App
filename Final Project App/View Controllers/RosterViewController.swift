@@ -96,7 +96,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func addIHPressed(_ sender: Any) {
         if (search.isHidden == true){
-            print("add to IH")
             search.isHidden = false
             
         }
@@ -118,7 +117,6 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func addLocaPressed(_ sender: Any) {
         if (search.isHidden == true){
-            print("add to Loca")
             search.isHidden = false
             
         }
