@@ -12,4 +12,8 @@ struct Constants{
     struct Storyboard{
         static let homeVC = "HomeVC"
     }
+    
+    struct UserDefaults {
+        static let currentUser = "currentUser"
+    }
 }

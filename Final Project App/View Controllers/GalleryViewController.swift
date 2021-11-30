@@ -76,7 +76,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func requestAuthHandler(status: PHAuthorizationStatus){
         if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized{
-            print("We have access ot the photos.")
+            print("We have access to the photos.")
         }else{
             print("We do not have access to photos.")
         }

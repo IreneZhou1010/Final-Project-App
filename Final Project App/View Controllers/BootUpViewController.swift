@@ -17,6 +17,8 @@ class BootUpViewController: UIViewController {
         
         setUpElements()
         
+        //try the following code for segue
+        //self.performSegue(withIdentifier: "toCreateUsername", sender: self)
     }
     
     //for design, make functions in Utilities Class
