@@ -181,6 +181,7 @@
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="128" height="128"/>
                                         <connections>
                                             <outlet property="imageView" destination="BQs-jK-gyh" id="REg-1X-TlB"/>
                                         </connections>
@@ -200,6 +201,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Gallery" id="PEj-sv-uUM"/>
+                    <connections>
+                        <outlet property="collectionView" destination="9ux-y0-oWi" id="uGq-pR-MFd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4AY-kO-yXq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="g05-Av-yrJ">

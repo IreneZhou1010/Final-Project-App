@@ -3,8 +3,8 @@
 //  Final Project App
 //
 //  Created by Irene Zhou on 11/6/21.
-//
-//NOTE TO LAUREN 11/30 --> continue watching : https://www.youtube.com/watch?v=TAF6cPZxmmI at 16:31
+// code credit: https://www.youtube.com/watch?v=TAF6cPZxmmI
+//NOTE TO LAUREN 12/1 --> figure out cell sizing, figure out url download thing for when you upload a photo
 import UIKit
 import Photos
 import FirebaseStorage
@@ -14,20 +14,30 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     
 
+    @IBOutlet weak var collectionView: UICollectionView!
     var imagePicker = UIImagePickerController()
     var imageTaken: UIImage!
     var theData: [UIImage] = [] //note sure what it should be an array of
     
+    //storage reference
     private let storage = Storage.storage().reference()
     let userDefault = UserDefaults.standard
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUpCollectionView()
+        let imageURLS = (self.userDefault.object(forKey: "imageURLS") as? [String]) ?? []
+        print("number of urls: \(imageURLS.count)")
+        print("about to fetch")
+        fetchData()
+            
         
-        
-        
+        DispatchQueue.main.async {
+            print("about to reload")
+            self.collectionView.reloadData()
+        }
+       
     }
     
     func setUpNav(){
@@ -39,6 +49,14 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         //navItem.rightBarButtonItem = doneItem
 
         navBar.setItems([navItem], animated: false)
+    }
+    
+    func setUpCollectionView(){
+        collectionView.dataSource = self
+        collectionView.delegate = self
+       
+        
+        
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return theData.count
@@ -75,6 +93,40 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
             return
         }
         
+        //do user defaults here
+        
+        
+        
+        var pathArray = (userDefault.object(forKey: "pathArray") as? [String]) ?? []
+        let photoPath = "galleryImages/image" + String(pathArray.count + 1)
+        pathArray.append(photoPath)
+        
+        userDefault.setValue(pathArray, forKey: "pathArray")
+        
+        //upload image data
+        storage.child(photoPath).putData(imageData, metadata: nil, completion: { _, error in
+            guard error == nil else{
+                print("Failed to Upload")
+                return
+            }
+            //get download url
+            self.storage.child(photoPath).downloadURL(completion: { url, error in
+                guard let url = url, error == nil else{
+                    return
+                }
+                
+                let urlString = url.absoluteString
+                print("Download URL: \(urlString)")
+                
+                var imageURLS = (self.userDefault.object(forKey: "imageURLS") as? [String]) ?? []
+                imageURLS.append(urlString)
+                self.userDefault.setValue(imageURLS, forKey: "imageURLS")
+                self.collectionView.reloadData()
+                
+            })
+            
+        })
+        
 //      upload image data
         //get download url
         //save download url to user defaults
@@ -87,23 +139,37 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func fetchData(){
+        print("about to start fetching")
         guard let imageURLS = userDefault.object(forKey: "imageURLS") as? [String] else{
+                print("Error retrieving imageURLs from userDefaults")
                 return
                 }
+        print("here 1")
         for urlString in imageURLS{
             guard let url = URL(string: urlString) else{
+                print("oops thats bad")
                 return
             }
-            URLSession.shared.dataTask(with: url) { data, _, error in
+            
+            let task = URLSession.shared.dataTask(with: url, completionHandler:  { data, _, error in
                 guard let data = data, error == nil else{
+                    print("oops there is an error")
                     return
                 }
-                
-                let image = UIImage(data: data)
-                self.theData.append(image ?? UIImage(named: "noImage")!)
-                //ADD IMAGE CALLED noImage to ASSETS
-            }
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self.theData.append(image ?? UIImage(named: "noImage")!)
+                    print("fetching")
+                    print("data count: \(self.theData.count)")
+                    print("reload in here")
+                    self.collectionView.reloadData()
+                }
+                //there is an image in assets called "noImage"
+            })
+            task.resume()
+            print("here 5")
         }
+      
     }
     
    
