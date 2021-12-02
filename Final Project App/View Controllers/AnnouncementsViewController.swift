@@ -21,9 +21,9 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     // Content of the announcements. Could later add the  button, but right now could have it added by the app runner people if an announcement needs to be made
-    let announcementContent: [String] = ["Register for your USAU membership by 11/30/2021. You need to have registered for USAU in order to play in any games / tournaments next spring.", "Social gathering this Friday @ Waterman.", "Cars for Harvest: \n Car 1: Dori & Gabi \n Car 2: Lindsay and Irene", "Practice will be INDOORS this Thursday!"]
-    let announcementType: [AnnouncementType] = [.Important,.Social,.Tournament, .Important]
-    let titlesOfCells: [String] = ["Example of important announcement", "Example of social announcement", "Example of tournament annoucement", "Another important announcement"]
+    var announcementContent: [String] = ["Register for your USAU membership by 11/30/2021. You need to have registered for USAU in order to play in any games / tournaments next spring.", "Social gathering this Friday @ Waterman.", "Cars for Harvest: \n Car 1: Dori & Gabi \n Car 2: Lindsay and Irene", "Practice will be INDOORS this Thursday!"]
+    var announcementType: [String] = ["Important","Social","Tournament", "Important"]
+    var titlesOfCells: [String] = ["Example of important announcement", "Example of social announcement", "Example of tournament annoucement", "Another important announcement"]
     //Important thing here is that there are 3 different arrays (guess I could have also done 1 array of arrays maybe a possibl change and adding/deleting needs to make sure to do to all 3
     
     // These are the colors of the square views in our table view cells.
@@ -35,6 +35,10 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
    
     @IBOutlet var tableView: UITableView!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -43,6 +47,11 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let defaults = UserDefaults.standard
+        //defaults.set(announcementContent, forKey: "AnnouncementContent")
+        //defaults.set(announcementType, forKey: "AnnouncementType")
+        //defaults.set(titlesOfCells, forKey: "TitlesOfCells")
     }
     
     // number of rows in table view
@@ -52,6 +61,10 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let defaults = UserDefaults.standard
+        announcementContent = defaults.array(forKey: "AnnouncementContent") as! [String]
+        titlesOfCells = defaults.array(forKey: "TitlesOfCells") as! [String]
         
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
         cell.importantTitle.text = self.titlesOfCells[indexPath.row]
@@ -71,11 +84,13 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func configureCellByType(cellToEdit: ImportantCell, locationOfCell: Int) -> ImportantCell{
+        let defaults = UserDefaults.standard
+        announcementType = defaults.array(forKey: "AnnouncementType") as! [String]
         let indexOfCell = locationOfCell
         //like way to match up by type
         //currently the configurations are limited to what I have here, but easy place to put all the updates
         //not that attached to how i have them now more a jumping off point for how we want it to look
-        if(announcementType[indexOfCell] == .Important){
+        if(announcementType[indexOfCell] == "Important"){
             cellToEdit.backgroundColor = UIColor.systemRed
             cellToEdit.backgroundColor = cellToEdit.backgroundColor?.withAlphaComponent(0.10)//light red to make it stand out
             //really just want to be able to change the boldness fo the font :(
@@ -85,10 +100,10 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
             //other customizable configurations:
             
         }
-        if(announcementType[indexOfCell] == .Social){
+        if(announcementType[indexOfCell] == "Social"){
             cellToEdit.importantTitle.textColor = .systemPurple
         }
-        if(announcementType[indexOfCell] == .Tournament){
+        if(announcementType[indexOfCell] == "Tournament"){
             cellToEdit.importantTitle.textColor = .systemGreen
         }
         //social to be purple

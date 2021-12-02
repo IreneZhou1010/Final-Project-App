@@ -34,6 +34,7 @@
 		6B6794182730342100447203 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6794162730342100447203 /* Main.storyboard */; };
 		6B67941A2730342200447203 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6794192730342200447203 /* Assets.xcassets */; };
 		6B67941D2730342200447203 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B67941B2730342200447203 /* LaunchScreen.storyboard */; };
+		F3A12D872758762A0020ECD1 /* NewAnnouncementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A12D862758762A0020ECD1 /* NewAnnouncementVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,6 +81,7 @@
 		6B67941C2730342200447203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B67941E2730342200447203 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBAB0DFFC651794D4B5C2440 /* Pods-Final Project App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Final Project App.release.xcconfig"; path = "Target Support Files/Pods-Final Project App/Pods-Final Project App.release.xcconfig"; sourceTree = "<group>"; };
+		F3A12D862758762A0020ECD1 /* NewAnnouncementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAnnouncementVC.swift; sourceTree = "<group>"; };
 		FEE052FD7199ADC2A9D98AB8 /* Pods-Final Project App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Final Project App.debug.xcconfig"; path = "Target Support Files/Pods-Final Project App/Pods-Final Project App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,7 @@
 				28AC8A08273A256F001B8421 /* SignUpViewController.swift */,
 				28AC8A0A273A259A001B8421 /* LoginViewController.swift */,
 				28AC8A0C273A2F73001B8421 /* BootUpViewController.swift */,
+				F3A12D862758762A0020ECD1 /* NewAnnouncementVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				6B57E1842736EE9000FB39D6 /* CalendarViewController.swift in Sources */,
 				28AC8A0F273ADC81001B8421 /* Utilities.swift in Sources */,
 				4BDA8FDF275490AD00CA8072 /* ResourceCell.swift in Sources */,
+				F3A12D872758762A0020ECD1 /* NewAnnouncementVC.swift in Sources */,
 				6B6794152730342100447203 /* HomeViewController.swift in Sources */,
 				6B6794112730342100447203 /* AppDelegate.swift in Sources */,
 				6B57E18C2736EEC400FB39D6 /* MessagingViewController.swift in Sources */,

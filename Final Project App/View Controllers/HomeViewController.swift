@@ -26,7 +26,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70))
         navBar.largeContentTitle = "HELLO WORLD"
-        navBar.backgroundColor = .systemPurple
+        navBar.backgroundColor = .systemGreen
+        
         
         view.addSubview(navBar)
         title = "Home"
@@ -61,7 +62,10 @@ class HomeViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationItem.hidesBackButton = false;
+    }
     
     @IBAction func pushToRoster(_ sender: Any) {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "RosterViewController") as! RosterViewController
