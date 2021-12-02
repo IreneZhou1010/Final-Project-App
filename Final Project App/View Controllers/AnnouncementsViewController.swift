@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Firebase
 //although right now, just planning on having different colors based on the announecemnt or other formatting stuff, could be used later for filtering and stuff
 enum AnnouncementType{
     case Important, Social, Tournament
@@ -19,6 +19,7 @@ class ImportantCell: UITableViewCell{
 }
 class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    private var db = Firestore.firestore()
     
     // Content of the announcements. Could later add the  button, but right now could have it added by the app runner people if an announcement needs to be made
     var announcementContent: [String] = ["Register for your USAU membership by 11/30/2021. You need to have registered for USAU in order to play in any games / tournaments next spring.", "Social gathering this Friday @ Waterman.", "Cars for Harvest: \n Car 1: Dori & Gabi \n Car 2: Lindsay and Irene", "Practice will be INDOORS this Thursday!"]
@@ -42,29 +43,43 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        fetchDataAnnouncementContent { result in
+            self.announcementContent = result
+            self.fetchDataAnnouncementTitle{
+                title in
+                self.titlesOfCells = title
+                print("Title was ", title)
+                
+                self.fetchDataAnnouncementType{ type in
+                    self.announcementType = type
+                    print("types are ", type)
+                    self.tableView.reloadData()
+                }
+            }
+            print("RESULT WAS ", result)
+            
+            
+        }
+        
+        print("announcement content is ", announcementContent)
         self.navigationItem.hidesBackButton = false
         self.parent?.title = "ANNOUNCEMENTS"
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        let defaults = UserDefaults.standard
-        //defaults.set(announcementContent, forKey: "AnnouncementContent")
-        //defaults.set(announcementType, forKey: "AnnouncementType")
-        //defaults.set(titlesOfCells, forKey: "TitlesOfCells")
     }
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("# of cells = ", self.announcementContent.count)
         return self.announcementContent.count
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let defaults = UserDefaults.standard
-        announcementContent = defaults.array(forKey: "AnnouncementContent") as! [String]
-        titlesOfCells = defaults.array(forKey: "TitlesOfCells") as! [String]
         
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
         cell.importantTitle.text = self.titlesOfCells[indexPath.row]
@@ -84,8 +99,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func configureCellByType(cellToEdit: ImportantCell, locationOfCell: Int) -> ImportantCell{
-        let defaults = UserDefaults.standard
-        announcementType = defaults.array(forKey: "AnnouncementType") as! [String]
+        
         let indexOfCell = locationOfCell
         //like way to match up by type
         //currently the configurations are limited to what I have here, but easy place to put all the updates
@@ -110,5 +124,167 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         //tournament to be green
         
         return cellToEdit
+    }
+
+    func fetchDataAnnouncementType(_ completion: @escaping ([String]) -> Void){
+        let docRefAnnouncementType = db.collection("announcements").document("AnnouncementType")
+        docRefAnnouncementType.getDocument{(document, error) in
+            if let document = document, document.exists{
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                
+                let begin = dataDescription.firstIndex(of: "(")
+                let end = dataDescription.firstIndex(of: ")")
+                let range = begin!..<end!
+                let pureData = dataDescription[range]
+                
+                var eachType = String()
+                
+                
+                let semaphore = DispatchSemaphore(value: 0)
+                print("pure data from fb is , " , pureData)
+                
+                DispatchQueue.global().async {
+                    for items in pureData{
+                        if(items == "("){
+                            semaphore.signal()
+                        }
+                        
+                        else if(items == ","){
+                            self.announcementType.append(String(eachType))
+                            eachType.removeAll()
+                        }
+                        else if(items == "\n"){
+                            semaphore.signal()
+                        }
+                        else{
+                            eachType.append(items)
+                            semaphore.signal()
+                        }
+                        
+                        self.announcementContent.append(String(eachType))
+                        semaphore.wait()
+                        
+                        DispatchQueue.main.async {
+                            completion(self.announcementType)
+                        }
+                    }
+                }
+                
+                
+               
+            }
+            else{
+                print("Sorry bud")
+            }
+        }
+    }
+    
+    func fetchDataAnnouncementTitle(_ completion: @escaping ([String]) -> Void){
+        let docRefAnnouncementT = db.collection("announcements").document("AnnouncementTitle")
+        docRefAnnouncementT.getDocument{(document, error) in
+            if let document = document, document.exists{
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                
+                let begin = dataDescription.firstIndex(of: "(")
+                let end = dataDescription.firstIndex(of: ")")
+                let range = begin!..<end!
+                let pureData = dataDescription[range]
+                
+                var eachTitle = String()
+                
+                
+                let semaphore = DispatchSemaphore(value: 0)
+                print("pure data from fb is , " , pureData)
+                
+                DispatchQueue.global().async {
+                    for items in pureData{
+                        if(items == "("){
+                            semaphore.signal()
+                        }
+                        
+                        else if(items == ","){
+                            self.titlesOfCells.append(String(eachTitle))
+                            eachTitle.removeAll()
+                        }
+                        else if(items == "\n"){
+                            semaphore.signal()
+                        }
+                        else{
+                            eachTitle.append(items)
+                            semaphore.signal()
+                        }
+                        
+                        self.titlesOfCells.append(String(eachTitle))
+                        semaphore.wait()
+                        
+                        DispatchQueue.main.async {
+                            completion(self.titlesOfCells)
+                        }
+                    }
+                }
+                
+                
+               
+            }
+            else{
+                print("Sorry bud")
+            }
+        }
+    }
+    
+    func fetchDataAnnouncementContent(_ completion: @escaping ([String]) -> Void){
+        let docRefAnnouncementC = db.collection("announcements").document("AnnouncementContent")
+        docRefAnnouncementC.getDocument{(document, error) in
+            if let document = document, document.exists{
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                
+                let begin = dataDescription.firstIndex(of: "(")
+                let end = dataDescription.firstIndex(of: ")")
+                let range = begin!..<end!
+                let pureData = dataDescription[range]
+                
+                var eachContent = String()
+                
+                
+                let semaphore = DispatchSemaphore(value: 0)
+                print("pure data from fb is , " , pureData)
+                
+                DispatchQueue.global().async {
+                    for items in pureData{
+                        if(items == "("){
+                            semaphore.signal()
+                        }
+                        
+                        else if(items == ","){
+                            self.announcementContent.append(String(eachContent))
+                            eachContent.removeAll()
+                        }
+                        else if(items == "\n"){
+                            semaphore.signal()
+                        }
+                        else{
+                            eachContent.append(items)
+                            semaphore.signal()
+                        }
+                        
+                        self.announcementContent.append(String(eachContent))
+                        semaphore.wait()
+                        
+                        DispatchQueue.main.async {
+                            completion(self.announcementContent)
+                        }
+                    }
+                }
+                
+                
+               
+            }
+            else{
+                print("Sorry bud")
+            }
+        }
+        
+        
+        
     }
 }

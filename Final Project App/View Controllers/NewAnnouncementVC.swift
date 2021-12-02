@@ -79,20 +79,8 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate {
     }
     
     func allowAnnouncement(){
-        let defaults = UserDefaults.standard
-        var fromDAC = defaults.array(forKey: "AnnouncementContent")
-        fromDAC?.append(userContent.text ?? "")
-        print(fromDAC)
-        var fromDAT = defaults.array(forKey: "AnnouncementType")
-        fromDAT?.append("Important")
-        var fromDCT = defaults.array(forKey: "TitlesOfCells")
-        fromDCT?.append("Gob hardcodes")
         
-        defaults.set(fromDAC, forKey: "AnnouncementContent")
-        defaults.set(fromDAT, forKey: "AnnouncementType")
-        defaults.set(fromDCT, forKey: "TitlesOfCells")
         
-        print(defaults.array(forKey: "AnnouncementContent"))
     }
     /*
     // MARK: - Navigation
