@@ -25,6 +25,10 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     var announcementContent: [String] = ["Register for your USAU membership by 11/30/2021. You need to have registered for USAU in order to play in any games / tournaments next spring.", "Social gathering this Friday @ Waterman.", "Cars for Harvest: \n Car 1: Dori & Gabi \n Car 2: Lindsay and Irene", "Practice will be INDOORS this Thursday!"]
     var announcementType: [String] = ["Important","Social","Tournament", "Important"]
     var titlesOfCells: [String] = ["Example of important announcement", "Example of social announcement", "Example of tournament annoucement", "Another important announcement"]
+    var typeDone = false
+    var contentDone = false
+    var titleDone = false
+    
     //Important thing here is that there are 3 different arrays (guess I could have also done 1 array of arrays maybe a possibl change and adding/deleting needs to make sure to do to all 3
     
     // These are the colors of the square views in our table view cells.
@@ -44,22 +48,25 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         
         super.viewDidLoad()
         
+        fetchDataAnnouncementType{ type in
+            self.announcementType = type
+            print("types are ", type)
+            
+            self.typeDone = true
+        }
+        
+        fetchDataAnnouncementTitle{ title in
+            self.titlesOfCells = title
+            print("Title was ", title)
+            
+            self.titleDone = true
+        }
+        
         fetchDataAnnouncementContent { result in
             self.announcementContent = result
-            self.fetchDataAnnouncementTitle{
-                title in
-                self.titlesOfCells = title
-                print("Title was ", title)
-                
-                self.fetchDataAnnouncementType{ type in
-                    self.announcementType = type
-                    print("types are ", type)
-                    self.tableView.reloadData()
-                }
-            }
             print("RESULT WAS ", result)
             
-            
+            self.contentDone = true
         }
         
         print("announcement content is ", announcementContent)
@@ -69,6 +76,12 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         
+        //while(!(typeDone && contentDone && titleDone)){
+            //the reason i am doing this is because i want them to try t update themselves asynch but
+            //print(typeDone, contentDone, titleDone)
+        //}
+        
+        //tableView.reloadData()
     }
     
     // number of rows in table view
@@ -161,7 +174,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                             semaphore.signal()
                         }
                         
-                        self.announcementContent.append(String(eachType))
+                        self.announcementType.append(String(eachType))
                         semaphore.wait()
                         
                         DispatchQueue.main.async {
