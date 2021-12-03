@@ -316,10 +316,15 @@
                     <navigationItem key="navigationItem" id="HGS-II-1ly"/>
                     <connections>
                         <outlet property="charCount" destination="DnZ-vD-pqD" id="J4H-7L-FTO"/>
+                        <outlet property="charLimitReminder" destination="Yyl-y1-MOH" id="OHw-Yu-Di4"/>
+                        <outlet property="navBar" destination="HGS-II-1ly" id="f91-Hw-uKi"/>
                         <outlet property="passcodeLabel" destination="VyP-kM-KgS" id="rio-Vk-uDI"/>
                         <outlet property="passwordInput" destination="EY3-Sd-tIy" id="fEM-3K-EbI"/>
+                        <outlet property="picker" destination="XrN-gY-Fde" id="Wh9-L9-dcr"/>
+                        <outlet property="titleText" destination="8o1-MB-2qh" id="aHa-0G-wEg"/>
                         <outlet property="userAddAnnouncement" destination="Cgd-IR-Tvf" id="agu-xZ-za5"/>
                         <outlet property="userContent" destination="Ave-Os-Uyj" id="xSy-bF-Tdx"/>
+                        <outlet property="userTitleInput" destination="Wae-3c-vmv" id="sVF-rY-2bA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Is-wT-bET" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -22,9 +22,9 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     private var db = Firestore.firestore()
     
     // Content of the announcements. Could later add the  button, but right now could have it added by the app runner people if an announcement needs to be made
-    var announcementContent: [String] = ["Register for your USAU membership by 11/30/2021. You need to have registered for USAU in order to play in any games / tournaments next spring.", "Social gathering this Friday @ Waterman.", "Cars for Harvest: \n Car 1: Dori & Gabi \n Car 2: Lindsay and Irene", "Practice will be INDOORS this Thursday!"]
-    var announcementType: [String] = ["Important","Social","Tournament", "Important"]
-    var titlesOfCells: [String] = ["Example of important announcement", "Example of social announcement", "Example of tournament annoucement", "Another important announcement"]
+    var announcementContent: [String] = []
+    var announcementType: [String] = []
+    var titlesOfCells: [String] = []
     var typeDone = false
     var contentDone = false
     var titleDone = false
@@ -76,12 +76,13 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         
-        //while(!(typeDone && contentDone && titleDone)){
-            //the reason i am doing this is because i want them to try t update themselves asynch but
-            //print(typeDone, contentDone, titleDone)
-        //}
+        
         
         //tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     
     // number of rows in table view
@@ -97,6 +98,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
         cell.importantTitle.text = self.titlesOfCells[indexPath.row]
         cell.importantText.text = self.announcementContent[indexPath.row]
+        cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "\\n", with: "\n")
         cell = configureCellByType(cellToEdit: cell, locationOfCell: indexPath.row)
         return cell
     }
@@ -165,21 +167,24 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                         else if(items == ","){
                             self.announcementType.append(String(eachType))
                             eachType.removeAll()
+                            semaphore.signal()
                         }
                         else if(items == "\n"){
                             semaphore.signal()
                         }
                         else{
                             eachType.append(items)
+                            print("each type now = ", eachType)
                             semaphore.signal()
                         }
                         
-                        self.announcementType.append(String(eachType))
-                        semaphore.wait()
                         
-                        DispatchQueue.main.async {
-                            completion(self.announcementType)
-                        }
+                    }
+                    self.announcementType.append(String(eachType))
+                    semaphore.wait()
+                    
+                    DispatchQueue.main.async {
+                        completion(self.announcementType)
                     }
                 }
                 
@@ -218,6 +223,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                         else if(items == ","){
                             self.titlesOfCells.append(String(eachTitle))
                             eachTitle.removeAll()
+                            semaphore.signal()
                         }
                         else if(items == "\n"){
                             semaphore.signal()
@@ -227,12 +233,14 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                             semaphore.signal()
                         }
                         
-                        self.titlesOfCells.append(String(eachTitle))
-                        semaphore.wait()
                         
-                        DispatchQueue.main.async {
-                            completion(self.titlesOfCells)
-                        }
+                    }
+                    
+                    self.titlesOfCells.append(String(eachTitle))
+                    semaphore.wait()
+                    
+                    DispatchQueue.main.async {
+                        completion(self.titlesOfCells)
                     }
                 }
                 
@@ -244,6 +252,8 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
     }
+    
+    
     
     func fetchDataAnnouncementContent(_ completion: @escaping ([String]) -> Void){
         let docRefAnnouncementC = db.collection("announcements").document("AnnouncementContent")
@@ -271,6 +281,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                         else if(items == ","){
                             self.announcementContent.append(String(eachContent))
                             eachContent.removeAll()
+                            semaphore.signal()
                         }
                         else if(items == "\n"){
                             semaphore.signal()
@@ -280,12 +291,14 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                             semaphore.signal()
                         }
                         
-                        self.announcementContent.append(String(eachContent))
-                        semaphore.wait()
                         
-                        DispatchQueue.main.async {
-                            completion(self.announcementContent)
-                        }
+                    }
+                    
+                    self.announcementContent.append(String(eachContent))
+                    semaphore.wait()
+                    
+                    DispatchQueue.main.async {
+                        completion(self.announcementContent)
                     }
                 }
                 

@@ -50,12 +50,14 @@ class Roster {
                         else if (items == ","){
                             self.IH.append(String(eachName))
                             eachName.removeAll()
+                            
                             semaphore.signal()
                         }
                         else if (items == "\n"){
                             semaphore.signal()
                         }
                         else{
+                            print("in ih items are ", items)
                             eachName.append(items)
                             semaphore.signal()
                         }
