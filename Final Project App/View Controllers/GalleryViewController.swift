@@ -18,17 +18,18 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     var imagePicker = UIImagePickerController()
     var imageTaken: UIImage!
     var theData: [UIImage] = [] //note sure what it should be an array of
+    var photoCount = 0
     
     //storage reference
     private let storage = Storage.storage().reference()
-    let userDefault = UserDefaults.standard
+    //let userDefault = UserDefaults.standard
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-        let imageURLS = (self.userDefault.object(forKey: "imageURLS") as? [String]) ?? []
-        print("number of urls: \(imageURLS.count)")
+       // let imageURLS = (self.userDefault.object(forKey: "imageURLS") as? [String]) ?? []
+        //print("number of urls: \(imageURLS.count)")
         print("about to fetch")
         fetchData()
             
@@ -36,6 +37,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         DispatchQueue.main.async {
             print("about to reload")
             self.collectionView.reloadData()
+            self.photoCount = self.theData.count
         }
        
     }
@@ -58,6 +60,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         
         
     }
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return theData.count
     }
@@ -97,30 +100,44 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         
         
         
-        var pathArray = (userDefault.object(forKey: "pathArray") as? [String]) ?? []
-        let photoPath = "galleryImages/image" + String(pathArray.count + 1)
-        pathArray.append(photoPath)
+        //var pathArray = (userDefault.object(forKey: "pathArray") as? [String]) ?? []
+        photoCount = theData.count
+        photoCount += 1
+        let photoPath = "galleryImages/image" + String(photoCount)
+        //pathArray.append(photoPath)
         
-        userDefault.setValue(pathArray, forKey: "pathArray")
+        //userDefault.setValue(pathArray, forKey: "pathArray")
         
         //upload image data
+        print("photopath: \(photoPath)")
         storage.child(photoPath).putData(imageData, metadata: nil, completion: { _, error in
             guard error == nil else{
                 print("Failed to Upload")
                 return
             }
             //get download url
+            print("uploaded")
             self.storage.child(photoPath).downloadURL(completion: { url, error in
                 guard let url = url, error == nil else{
                     return
                 }
                 
-                let urlString = url.absoluteString
-                print("Download URL: \(urlString)")
-                
-                var imageURLS = (self.userDefault.object(forKey: "imageURLS") as? [String]) ?? []
-                imageURLS.append(urlString)
-                self.userDefault.setValue(imageURLS, forKey: "imageURLS")
+                let task = URLSession.shared.dataTask(with: url, completionHandler:  { data, _, error in
+                    guard let data = data, error == nil else{
+                        print("oops there is an error")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: data)
+                        self.theData.append(image ?? UIImage(named: "noImage")!)
+                        print("fetching")
+                        print("data count: \(self.theData.count)")
+                        print("reload in here")
+                        self.collectionView.reloadData()
+                    }
+                    //there is an image in assets called "noImage"
+                })
+                task.resume()
                 self.collectionView.reloadData()
                 
             })
@@ -140,37 +157,50 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func fetchData(){
         print("about to start fetching")
-        guard let imageURLS = userDefault.object(forKey: "imageURLS") as? [String] else{
-                print("Error retrieving imageURLs from userDefaults")
-                return
-                }
+//        guard let imageURLS = userDefault.object(forKey: "imageURLS") as? [String] else{
+//                print("Error retrieving imageURLs from userDefaults")
+//                return
+//                }
         print("here 1")
-        for urlString in imageURLS{
-            guard let url = URL(string: urlString) else{
-                print("oops thats bad")
-                return
-            }
-            
-            let task = URLSession.shared.dataTask(with: url, completionHandler:  { data, _, error in
-                guard let data = data, error == nil else{
-                    print("oops there is an error")
+        //var photoPath = ""
+        //var photoCount = 1
+        let photoPath = "galleryImages"
+        
+            self.storage.child(photoPath).listAll(completion: {list, error in
+                if let error = error{
                     return
                 }
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data)
-                    self.theData.append(image ?? UIImage(named: "noImage")!)
-                    print("fetching")
-                    print("data count: \(self.theData.count)")
-                    print("reload in here")
-                    self.collectionView.reloadData()
+                for item in list.items{
+                    item.downloadURL(completion: { url, error in
+                        guard let url = url, error == nil else{
+                            return
+                        }
+                        
+                        let task = URLSession.shared.dataTask(with: url, completionHandler:  { data, _, error in
+                            guard let data = data, error == nil else{
+                                print("oops there is an error")
+                                return
+                            }
+                            DispatchQueue.main.async {
+                                let image = UIImage(data: data)
+                                self.theData.append(image ?? UIImage(named: "noImage")!)
+                                print("fetching")
+                                print("data count: \(self.theData.count)")
+                                print("reload in here")
+                                self.collectionView.reloadData()
+                            }
+                            //there is an image in assets called "noImage"
+                        })
+                        task.resume()
+                    })
                 }
-                //there is an image in assets called "noImage"
             })
-            task.resume()
-            print("here 5")
-        }
-      
+            
     }
+
+    
+      
+    
     
    
     
@@ -197,35 +227,35 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     
     
-    func uploadToCloud(fileUrl: URL){
-        
-        
-        let data = Data()
-        
-        
-        
-        let localeFile = fileUrl
-        let urlString = localeFile.absoluteString
-        var imageURLS = (userDefault.object(forKey: "imageURLS") as? [String]) ?? []
-        imageURLS.append(urlString)
-        userDefault.setValue(imageURLS, forKey: "imageURLS")
-        
-        
-        var pathArray = (userDefault.object(forKey: "pathArray") as? [String]) ?? []
-        let photoPath = "galleryImages/image" + String(pathArray.count + 1)
-        pathArray.append(photoPath)
-        userDefault.setValue(pathArray, forKey: "pathArray")
-        
-        let photoRef = storage.child(photoPath)
-        
-        let uploadTask = photoRef.putFile(from: localeFile, metadata: nil) {(metadata, err) in
-            guard let metadata = metadata else {
-                print(err?.localizedDescription ?? "Error occured")
-            return
-            }
-            print("Photo Uploaded")
-        }
-    }
+//    func uploadToCloud(fileUrl: URL){
+//
+//
+//        let data = Data()
+//
+//
+//
+//        let localeFile = fileUrl
+//        let urlString = localeFile.absoluteString
+//        //var imageURLS = (userDefault.object(forKey: "imageURLS") as? [String]) ?? []
+//        //imageURLS.append(urlString)
+//        //userDefault.setValue(imageURLS, forKey: "imageURLS")
+//
+//
+//        //var pathArray = (userDefault.object(forKey: "pathArray") as? [String]) ?? []
+//        let photoPath = "galleryImages/image" + String(pathArray.count + 1)
+//        pathArray.append(photoPath)
+//        userDefault.setValue(pathArray, forKey: "pathArray")
+//
+//        let photoRef = storage.child(photoPath)
+//
+//        let uploadTask = photoRef.putFile(from: localeFile, metadata: nil) {(metadata, err) in
+//            guard let metadata = metadata else {
+//                print(err?.localizedDescription ?? "Error occured")
+//            return
+//            }
+//            print("Photo Uploaded")
+//        }
+//    }
     /*
     // MARK: - Navigation
 
