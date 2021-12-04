@@ -52,5 +52,129 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Final Project App/View Controllers/SinglePictureViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "SinglePictureViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C - 811569749be72123"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Final_Project_App.SinglePictureViewController.imageView.getter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Final Project App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurensands/Documents/Fall%202021/Mobile%20App%20Dev/Final-Project-App/Final%20Project%20App/View%20Controllers/SinglePictureViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C - b5cb98eda963c93b"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Final_Project_App.SinglePictureViewController.imageView.setter : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Final Project App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurensands/Documents/Fall%202021/Mobile%20App%20Dev/Final-Project-App/Final%20Project%20App/View%20Controllers/SinglePictureViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C - 4210e0dd954c7e8d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Final_Project_App.SinglePictureViewController.imageView.modify : Swift.Optional&lt;__C.UIImageView&gt;"
+                  moduleName = "Final Project App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurensands/Documents/Fall%202021/Mobile%20App%20Dev/Final-Project-App/Final%20Project%20App/View%20Controllers/SinglePictureViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C - 3e7b7701d899a762"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Final_Project_App.SinglePictureViewController.imageView.modify : Swift.Optional&lt;__C.UIImageView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Final Project App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurensands/Documents/Fall%202021/Mobile%20App%20Dev/Final-Project-App/Final%20Project%20App/View%20Controllers/SinglePictureViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C - f1252ee7bc2bf7d2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Final_Project_App.SinglePictureViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Final_Project_App.SinglePictureViewController"
+                  moduleName = "Final Project App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurensands/Documents/Fall%202021/Mobile%20App%20Dev/Final-Project-App/Final%20Project%20App/View%20Controllers/SinglePictureViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "C5606A47-CECD-4595-A7AA-F10EB806987C - 68cd9aa727c97b9a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Final_Project_App.SinglePictureViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Final_Project_App.SinglePictureViewController&gt;"
+                  moduleName = "Final Project App"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/laurensands/Documents/Fall%202021/Mobile%20App%20Dev/Final-Project-App/Final%20Project%20App/View%20Controllers/SinglePictureViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67DD4B80-684A-47DB-8B29-24AFFD7CA5C0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Final Project App/View Controllers/SinglePictureViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5"
+            endingLineNumber = "5"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
