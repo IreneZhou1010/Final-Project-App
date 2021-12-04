@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
+    @IBOutlet weak var userProfilePicture: UIImageView!
     
     @IBOutlet weak var rosterButton: UIButton!
     @IBOutlet weak var announcementsButton: UIButton!
@@ -59,6 +61,15 @@ class HomeViewController: UIViewController {
         execButton.layer.borderColor = UIColor.black.cgColor
         messagingButton.layer.borderColor = UIColor.black.cgColor
         galleryButton.layer.borderColor = UIColor.black.cgColor
+        
+        let url = (Auth.auth().currentUser?.photoURL)!
+        
+        if let data = try? Data(contentsOf: url) {
+                        if let image = UIImage(data: data) {
+                            userProfilePicture.image = image
+                        }
+                    }
+        
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }

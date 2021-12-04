@@ -119,7 +119,7 @@
             </objects>
             <point key="canvasLocation" x="-360" y="1350"/>
         </scene>
-        <!--Messages-->
+        <!--Profile-->
         <scene sceneID="SIT-sL-qiB">
             <objects>
                 <viewController storyboardIdentifier="MessagingViewController" id="hoA-Fw-PBb" customClass="MessagingViewController" customModule="Final_Project_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,18 +127,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Messaging" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rF6-7R-lJj">
-                                <rect key="frame" x="154" y="364" width="83" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rF6-7R-lJj">
+                                <rect key="frame" x="84" y="88" width="223" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p3e-f8-4XS">
+                                <rect key="frame" x="84" y="237" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aGg-t0-ymC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Messages" id="z90-4r-3Fp"/>
+                    <navigationItem key="navigationItem" title="Profile" id="z90-4r-3Fp"/>
+                    <connections>
+                        <outlet property="profilePic" destination="p3e-f8-4XS" id="6Km-C4-kRb"/>
+                        <outlet property="usersName" destination="rF6-7R-lJj" id="GM3-bO-I7U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKH-6M-XBw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -826,7 +834,7 @@
                                 <rect key="frame" x="16" y="692" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Messaging"/>
+                                <state key="normal" title="Profile"/>
                                 <connections>
                                     <action selector="pushToMessaging:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fjP-Dc-L4E"/>
                                     <segue destination="hoA-Fw-PBb" kind="show" id="g0T-A4-xLO"/>
@@ -850,6 +858,7 @@
                         <outlet property="messagingButton" destination="wqt-OE-KWY" id="fbX-8h-AMj"/>
                         <outlet property="resourcesButton" destination="LYG-R4-ofV" id="aC2-EF-9TL"/>
                         <outlet property="rosterButton" destination="pqZ-E4-Rz8" id="2FU-jt-QFT"/>
+                        <outlet property="userProfilePicture" destination="Hlf-gx-1jj" id="WcF-nm-Ks5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

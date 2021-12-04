@@ -64,6 +64,11 @@ class LoginViewController: UIViewController {
                     self.errorLabel.text = err?.localizedDescription
                     self.errorLabel.alpha = 1
                 }else{
+                    if let providerData = Auth.auth().currentUser?.providerData{
+                           for item in providerData {
+                               print("item is" , "\(item.providerID)")
+                           }
+                       }
                     self.transitionToHome()
                 }
             }

@@ -84,11 +84,17 @@ class SignUpViewController: UIViewController {
                     let db = Firestore.firestore()
                     let dataDict = ["firstname" : firstName, "lastname" : lastName, "uid" : result_!.user.uid]
                     
+                    
+                    
                     db.collection("users").addDocument(data: dataDict) { (error_) in
                         if error_ != nil{
                             //show error message
                             self.showError("Error saving user data.")
                         }else{
+                            let pChanger = Auth.auth().currentUser?.createProfileChangeRequest()
+                            pChanger?.displayName = firstName + " " + lastName
+                            pChanger?.photoURL = URL(string: "http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png")
+                            pChanger?.commitChanges()
                             self.transitionToHome()
                         }
                     }
