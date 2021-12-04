@@ -62,14 +62,14 @@ class HomeViewController: UIViewController {
         messagingButton.layer.borderColor = UIColor.black.cgColor
         galleryButton.layer.borderColor = UIColor.black.cgColor
         
-        /*let url = (Auth.auth().currentUser?.photoURL)!
+        let url = (Auth.auth().currentUser?.photoURL)!
         
         if let data = try? Data(contentsOf: url) {
                         if let image = UIImage(data: data) {
                             userProfilePicture.image = image
                         }
                     }
-        */
+        
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
