@@ -6,16 +6,23 @@
 //
 
 import UIKit
+import FSCalendar
 
-class CalendarViewController: UIViewController {
+class CalendarViewController: UIViewController, FSCalendarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        CalendarView.delegate = self
         // Do any additional setup after loading the view.
     }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE MM-dd-YYYY"
+        let string = formatter.string(from: date)
+        print(string)
+    }
+    @IBOutlet weak var CalendarView: FSCalendar!
     
-
     /*
     // MARK: - Navigation
 
