@@ -116,7 +116,8 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     }
     
     func allowAnnouncement(){
-        let contentToAdd = userContent.text
+        var contentToAdd = userContent.text
+        contentToAdd = contentToAdd?.replacingOccurrences(of: ",", with: "x2v6mo8")
         let titleToAdd = userTitleInput.text
         
         //getting the type

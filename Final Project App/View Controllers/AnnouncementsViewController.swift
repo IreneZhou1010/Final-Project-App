@@ -149,6 +149,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         cell.importantTitle.text = self.titlesOfCells[indexPath.row]
         cell.importantText.text = self.announcementContent[indexPath.row]
         cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "\\n", with: "\n")
+        cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "x2v6mo8", with: ",")
         cell = configureCellByType(cellToEdit: cell, locationOfCell: indexPath.row)
         return cell
     }
