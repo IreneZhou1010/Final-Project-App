@@ -43,11 +43,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        while Dates.isEmpty == true{
+            print("empty")
+        }
         self.populateEvents()
     }
 
     @IBOutlet weak var EventList: UILabel!
     @IBAction func AddEvent(_ sender: Any) {
+        //NewEvent = UITextField()
         if let eventText = NewEvent.text {
             if let event = Dict[SelectedDate] {
                 var index = 0
@@ -60,7 +64,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
                 Cal.Events.remove(at: index)
                 Cal.removeFromDates(name: SelectedDate)
                 Cal.removeFromEvents(name: Dict[SelectedDate]!)
-                Dict[SelectedDate] = event + ", " + eventText
+                Dict[SelectedDate]?.append(" & \(eventText)")
             }else{
                 Dict[SelectedDate] = eventText
             }
@@ -72,10 +76,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
             CalendarView.reloadData()
             EventList.text = Dict[SelectedDate]
             NewEvent.text = nil
+            //NewEvent = nil
         }
         
     }
-    @IBOutlet weak var NewEvent: UITextField!
+
+    @IBOutlet var NewEvent: UITextField!
     @IBAction func ClearEvents(_ sender: Any) {
         var index = 0
         for n in 0...Dates.count - 1 {

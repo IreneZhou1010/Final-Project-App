@@ -593,9 +593,6 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="NewEvent:" destination="0Qz-dJ-Jup" eventType="editingDidEnd" id="cfd-9n-VlX"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBA-si-dG9">
                                 <rect key="frame" x="304" y="425" width="70" height="30"/>
@@ -634,7 +631,7 @@
                     <connections>
                         <outlet property="CalendarView" destination="TIa-ok-Ln8" id="aMn-Vt-kbZ"/>
                         <outlet property="EventList" destination="SmR-As-P1a" id="CE3-zk-GfC"/>
-                        <outlet property="NewEvent" destination="yCn-Ds-9Jg" id="D21-sd-ohB"/>
+                        <outlet property="NewEvent" destination="yCn-Ds-9Jg" id="0WO-wR-83i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kj-yG-JQx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
