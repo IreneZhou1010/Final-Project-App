@@ -151,16 +151,16 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let lastCellNumber = announcementContent.count - 1
         print("at least I am trying")
         print("number of cells is " , self.tableView.numberOfRows(inSection: 0))
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
-        cell.importantTitle.text = self.titlesOfCells[indexPath.row]
-        cell.importantText.text = self.announcementContent[indexPath.row]
-        cell.postedByText.text = "Posted by: " + self.announcementPoster[indexPath.row]
+        cell.importantTitle.text = self.titlesOfCells[lastCellNumber - indexPath.row]
+        cell.importantText.text = self.announcementContent[lastCellNumber - indexPath.row]
+        cell.postedByText.text = "Posted by: " + self.announcementPoster[lastCellNumber - indexPath.row]
         cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "\\n", with: "\n")
         cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "x2v6mo8", with: ",")
-        cell = configureCellByType(cellToEdit: cell, locationOfCell: indexPath.row)
+        cell = configureCellByType(cellToEdit: cell, locationOfCell: lastCellNumber - indexPath.row)
         return cell
     }
     
@@ -171,7 +171,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 150 
+        return 150
     }
     
     func configureCellByType(cellToEdit: ImportantCell, locationOfCell: Int) -> ImportantCell{
@@ -432,3 +432,4 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
 }
+
