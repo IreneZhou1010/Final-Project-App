@@ -31,8 +31,7 @@ class HomeViewController: UIViewController {
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70))
         navBar.largeContentTitle = "HELLO WORLD"
         navBar.backgroundColor = .systemPurple
-        
-        
+       
         view.addSubview(navBar)
         title = "Home"
         
@@ -55,14 +54,14 @@ class HomeViewController: UIViewController {
         messagingButton.layer.borderWidth = 2.0
         galleryButton.layer.borderWidth = 2.0
 
-        rosterButton.layer.borderColor = UIColor.black.cgColor
-        announcementsButton.layer.borderColor = UIColor.black.cgColor
-        calendarButton.layer.borderColor = UIColor.black.cgColor
-        resourcesButton.layer.borderColor = UIColor.black.cgColor
+        rosterButton.layer.borderColor = UIColor.systemGray5.cgColor
+        announcementsButton.layer.borderColor = UIColor.systemGray5.cgColor
+        calendarButton.layer.borderColor = UIColor.systemGray5.cgColor
+        resourcesButton.layer.borderColor = UIColor.systemGray5.cgColor
         //guruButton.layer.borderColor = UIColor.black.cgColor
-        execButton.layer.borderColor = UIColor.black.cgColor
-        messagingButton.layer.borderColor = UIColor.black.cgColor
-        galleryButton.layer.borderColor = UIColor.black.cgColor
+        execButton.layer.borderColor = UIColor.systemGray5.cgColor
+        messagingButton.layer.borderColor = UIColor.systemGray5.cgColor
+        galleryButton.layer.borderColor = UIColor.systemGray5.cgColor
         
         loadProfilePic()
         navigationController?.setNavigationBarHidden(false, animated: true)

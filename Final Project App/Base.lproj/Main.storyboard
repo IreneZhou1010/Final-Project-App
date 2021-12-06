@@ -461,7 +461,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="PfJ-hj-I5F">
-                            <rect key="frame" x="0.0" y="163.66666828502309" width="390" height="44"/>
+                            <rect key="frame" x="0.0" y="192.66666828502309" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                             <state key="normal" title="Add an announcement">
@@ -472,24 +472,17 @@
                             </connections>
                         </button>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="115" id="wRt-qt-aHg" customClass="ImportantCell" customModule="Final_Project_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="115"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="144" id="wRt-qt-aHg" customClass="ImportantCell" customModule="Final_Project_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="24.333333969116211" width="390" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wRt-qt-aHg" id="TK7-yR-wbw">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="115"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="144"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Announcement title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g41-L7-191">
                                             <rect key="frame" x="0.0" y="11" width="390" height="23"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                             <color key="textColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Posted by " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-2i-puK">
-                                            <rect key="frame" x="0.0" y="94" width="390" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" systemColor="systemGray2Color"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6KS-Lw-Dvy">
@@ -499,13 +492,25 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfW-2i-puK">
+                                            <rect key="frame" x="0.0" y="105" width="390" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="33" id="EaN-Hc-27o"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" systemColor="systemGray2Color"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="6KS-Lw-Dvy" firstAttribute="top" secondItem="g41-L7-191" secondAttribute="bottom" constant="8" id="caC-c1-d95"/>
+                                        <constraint firstItem="QfW-2i-puK" firstAttribute="leading" secondItem="g41-L7-191" secondAttribute="leading" id="Qgc-Bc-g5g"/>
+                                        <constraint firstItem="6KS-Lw-Dvy" firstAttribute="top" secondItem="g41-L7-191" secondAttribute="bottom" constant="-2" id="caC-c1-d95"/>
                                         <constraint firstItem="g41-L7-191" firstAttribute="top" secondItem="TK7-yR-wbw" secondAttribute="topMargin" id="dY3-c4-hzG"/>
                                         <constraint firstItem="g41-L7-191" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leadingMargin" constant="-20" id="dbq-Xc-7O6"/>
+                                        <constraint firstItem="QfW-2i-puK" firstAttribute="trailing" secondItem="g41-L7-191" secondAttribute="trailing" id="eep-DZ-xLb"/>
                                         <constraint firstAttribute="trailing" secondItem="6KS-Lw-Dvy" secondAttribute="trailing" constant="8" id="jfA-82-Czg"/>
                                         <constraint firstItem="g41-L7-191" firstAttribute="centerX" secondItem="6KS-Lw-Dvy" secondAttribute="centerX" id="r2t-Hv-1OL"/>
+                                        <constraint firstItem="QfW-2i-puK" firstAttribute="top" secondItem="g41-L7-191" secondAttribute="bottom" constant="71" id="wR6-fT-x2t"/>
                                         <constraint firstItem="6KS-Lw-Dvy" firstAttribute="leading" secondItem="TK7-yR-wbw" secondAttribute="leading" constant="8" id="yol-Co-n0r"/>
                                     </constraints>
                                 </tableViewCellContentView>

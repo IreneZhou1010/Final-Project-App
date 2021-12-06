@@ -40,12 +40,12 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     
     func textViewDidChange(_ textView: UITextView) {
         let numChars = userContent.text.count
-        charCount.text = "\(numChars)/400"
+        charCount.text = "\(numChars)/200"
         
-        if(numChars >= 400){
+        if(numChars >= 200){
             charCount.textColor = .systemRed
         }
-        if(numChars <= 400){
+        if(numChars <= 200){
             charCount.textColor = .systemGray
         }
     }
