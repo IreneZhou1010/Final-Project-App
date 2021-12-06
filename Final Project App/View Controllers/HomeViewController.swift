@@ -30,7 +30,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 70))
         navBar.largeContentTitle = "HELLO WORLD"
-        navBar.backgroundColor = .systemGreen
+        navBar.backgroundColor = .systemPurple
         
         
         view.addSubview(navBar)
@@ -69,9 +69,9 @@ class HomeViewController: UIViewController {
     }
         
     func loadProfilePic(){
-        let url = (Auth.auth().currentUser?.photoURL)!
+        let url = (Auth.auth().currentUser?.photoURL) ?? URL(string: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
         
-        let stringversionofurl = url.absoluteString
+        let stringversionofurl = url!.absoluteString
     
         
         self.storage.child(stringversionofurl).downloadURL(completion: { url, error in

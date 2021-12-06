@@ -31,6 +31,7 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     var announcementContent : [String] = []
     var announcementType: [String] = []
     var titlesOfCells: [String] = []
+    var announcementPoster: [String] = []
     
     let pickerChoices = ["Important", "Social", "Tournament"]
     
@@ -117,6 +118,8 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     
     func allowAnnouncement(){
         var contentToAdd = userContent.text
+        
+        var posterToAdd = Auth.auth().currentUser?.displayName
         contentToAdd = contentToAdd?.replacingOccurrences(of: ",", with: "x2v6mo8")
         let titleToAdd = userTitleInput.text
         
@@ -132,10 +135,20 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
         
         let docRefType = db.collection("announcements").document("AnnouncementType")
         
+        let docRefPoster = db.collection("announcements").document("AnnouncementPoster")
+        
         fetchDataAnnouncementContent{ result in
             self.announcementContent = result
             self.announcementContent.append(contentToAdd ?? "empty announcement") //expect that I know that won't happen
             docRefContent.setData(["AnnouncementContent" : self.announcementContent])
+            
+            
+        }
+        
+        fetchDataPostedBy{ result in
+            self.announcementPoster = result
+            self.announcementPoster.append(posterToAdd ?? "Unknown user") //expect that I know that won't happen
+            docRefPoster.setData(["AnnouncementPoster" : self.announcementPoster])
             
             
         }
@@ -353,6 +366,62 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
                     
                     DispatchQueue.main.async {
                         completion(self.titlesOfCells)
+                    }
+                }
+                
+                
+               
+            }
+            else{
+                print("Sorry bud")
+            }
+        }
+    }
+    
+    func fetchDataPostedBy(_ completion: @escaping ([String]) -> Void){
+        let docRefAnnouncementT = db.collection("announcements").document("AnnouncementPoster")
+        docRefAnnouncementT.getDocument{(document, error) in
+            if let document = document, document.exists{
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                
+                let begin = dataDescription.firstIndex(of: "(")
+                let end = dataDescription.firstIndex(of: ")")
+                let range = begin!..<end!
+                let pureData = dataDescription[range]
+                
+                var eachPoster = String()
+                
+                
+                let semaphore = DispatchSemaphore(value: 0)
+                print("pure data from fb is , " , pureData)
+                
+                DispatchQueue.global().async {
+                    for items in pureData{
+                        if(items == "("){
+                            semaphore.signal()
+                        }
+                        
+                        else if(items == ","){
+                            self.announcementPoster.append(String(eachPoster))
+                            eachPoster.removeAll()
+                            semaphore.signal()
+                        }
+                        else if(items == "\n"){
+                            semaphore.signal()
+                        }
+                        else{
+                            eachPoster.append(items)
+                            semaphore.signal()
+                        }
+                        
+                        
+                    }
+                    
+                    self.announcementPoster.append(String(eachPoster))
+                    semaphore.wait()
+                    
+                    DispatchQueue.main.async {
+                        completion(self.announcementPoster)
                     }
                 }
                 

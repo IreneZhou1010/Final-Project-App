@@ -11,6 +11,7 @@ import Firebase
 class MessagingViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     @IBOutlet weak var profilePic: UIImageView!
     
+    
     @IBOutlet weak var usersName: UILabel!
     var imagePicker = UIImagePickerController()
     
@@ -24,6 +25,8 @@ class MessagingViewController: UIViewController, UIImagePickerControllerDelegate
         
         fetchData()
         
+        
+        self.profilePic.frame = CGRect(x: self.view.frame.midX - 75, y: 200, width: 150, height: 150)
         //profilePic.layer.cornerRadius = 100
         
         print("Current photo url is ", Auth.auth().currentUser?.photoURL)
@@ -116,6 +119,8 @@ class MessagingViewController: UIViewController, UIImagePickerControllerDelegate
                     DispatchQueue.main.async {
                         let image = UIImage(data: data)
                         self.profilePic.image = image
+                        self.profilePic.frame = CGRect(x: self.view.frame.midX - 75, y: 200, width: 150, height: 150)
+                        
                     }
                    
                 })

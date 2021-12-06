@@ -14,7 +14,7 @@ enum AnnouncementType{
 
 class ImportantCell: UITableViewCell{
     @IBOutlet weak var importantText: UILabel!
-    
+    @IBOutlet var postedByText: UILabel!
     @IBOutlet weak var importantTitle: UILabel!
 }
 class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -25,6 +25,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     var announcementContent: [String] = []
     var announcementType: [String] = []
     var titlesOfCells: [String] = []
+    var announcementPoster: [String] = []
     var typeDone = false
     var contentDone = false
     var titleDone = false
@@ -54,21 +55,24 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
             self.announcementType = type
             print("types are ", type)
             
-            self.typeDone = true
         }
         
         fetchDataAnnouncementTitle{ title in
             self.titlesOfCells = title
             print("Title was ", title)
             
-            self.titleDone = true
         }
         
         fetchDataAnnouncementContent { result in
             self.announcementContent = result
             print("RESULT WAS ", result)
             
-            self.contentDone = true
+        }
+        
+        fetchDataPostedBy { result in
+            self.announcementPoster = result
+            print("RESULT WAS ", result)
+            
         }
         
         print("announcement content is ", announcementContent)
@@ -89,6 +93,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                 self.announcementContent = []
                 self.announcementType = []
                 self.titlesOfCells = []
+                self.announcementPoster = []
                 
                 self.fetchDataAnnouncementType{ type in
                     self.announcementType = type
@@ -104,14 +109,19 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                     self.titleDone = true
                 }
                 
+                self.fetchDataPostedBy { result in
+                    self.announcementPoster = result
+                    print("RESULT WAS ", result)
+                    
+                }
+                
                 self.fetchDataAnnouncementContent { result in
                     self.announcementContent = result
                     print("RESULT WAS ", result)
                     
-                    self.contentDone = true
-                    
                     self.tableView.reloadData()
                 }
+                
                 
                 
                 print("Am I even trying?")
@@ -136,7 +146,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("# of cells = ", self.announcementContent.count)
         return self.announcementContent.count
     }
     
@@ -148,6 +157,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
         cell.importantTitle.text = self.titlesOfCells[indexPath.row]
         cell.importantText.text = self.announcementContent[indexPath.row]
+        cell.postedByText.text = "Posted by: " + self.announcementPoster[indexPath.row]
         cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "\\n", with: "\n")
         cell.importantText.text = cell.importantText.text?.replacingOccurrences(of: "x2v6mo8", with: ",")
         cell = configureCellByType(cellToEdit: cell, locationOfCell: indexPath.row)
@@ -305,6 +315,62 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    
+    func fetchDataPostedBy(_ completion: @escaping ([String]) -> Void){
+        let docRefAnnouncementT = db.collection("announcements").document("AnnouncementPoster")
+        docRefAnnouncementT.getDocument{(document, error) in
+            if let document = document, document.exists{
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                
+                let begin = dataDescription.firstIndex(of: "(")
+                let end = dataDescription.firstIndex(of: ")")
+                let range = begin!..<end!
+                let pureData = dataDescription[range]
+                
+                var eachPoster = String()
+                
+                
+                let semaphore = DispatchSemaphore(value: 0)
+                print("pure data from fb is , " , pureData)
+                
+                DispatchQueue.global().async {
+                    for items in pureData{
+                        if(items == "("){
+                            semaphore.signal()
+                        }
+                        
+                        else if(items == ","){
+                            self.announcementPoster.append(String(eachPoster))
+                            eachPoster.removeAll()
+                            semaphore.signal()
+                        }
+                        else if(items == "\n"){
+                            semaphore.signal()
+                        }
+                        else{
+                            eachPoster.append(items)
+                            semaphore.signal()
+                        }
+                        
+                        
+                    }
+                    
+                    self.announcementPoster.append(String(eachPoster))
+                    semaphore.wait()
+                    
+                    DispatchQueue.main.async {
+                        completion(self.announcementPoster)
+                    }
+                }
+                
+                
+               
+            }
+            else{
+                print("Sorry bud")
+            }
+        }
+    }
     
     
     func fetchDataAnnouncementContent(_ completion: @escaping ([String]) -> Void){
