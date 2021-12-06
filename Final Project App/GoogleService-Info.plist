@@ -19,15 +19,19 @@
 	<key>STORAGE_BUCKET</key>
 	<string>wuwu-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save Photos from Gallery</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Upload Photos to Gallery</string>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:181094616494:ios:0efd162c2b106ea7c2cc3f</string>
 </dict>
