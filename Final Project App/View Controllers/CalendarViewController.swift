@@ -50,14 +50,25 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     override func viewDidAppear(_ animated: Bool) {
         self.populateEvents()
-        print("Tryign to populate")
+        //CalendarView.reloadData() //COPY
+        print("Trying to populate")
     }
 
     @IBOutlet weak var EventList: UILabel!
     @IBAction func AddEvent(_ sender: Any) {
         if let eventText = NewEvent.text {
             if let event = Dict[SelectedDate] {
-                Dict[SelectedDate] = event + " \n" + eventText
+                var index = 0
+                for n in 0...Dates.count - 1 {
+                    if Dates[n] == SelectedDate {
+                        index = n
+                    }
+                }
+                Cal.Dates.remove(at: index)
+                Cal.Events.remove(at: index)
+                Cal.removeFromDates(name: SelectedDate)
+                Cal.removeFromEvents(name: Dict[SelectedDate]!)
+                Dict[SelectedDate] = event + ", " + eventText
             }else{
                 Dict[SelectedDate] = eventText
             }
@@ -66,24 +77,43 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
 //            }else{
 //                Events[SelectedDate] = eventText
 //            }
-            NewEvent.text = nil
+            Cal.Dates.append(SelectedDate)
+            Cal.Events.append(Dict[SelectedDate]!)
+            Cal.addToDates(name: SelectedDate)
+            Cal.addToEvents(name: Dict[SelectedDate]!)
             CalendarView.reloadData()
+            EventList.text = Dict[SelectedDate]
+            NewEvent.text = nil
             //EventList.text = Events[SelectedDate]
         }
         
     }
     @IBOutlet weak var NewEvent: UITextField!
     @IBAction func ClearEvents(_ sender: Any) {
-        Dict[SelectedDate] = nil
-        //Events[SelectedDate] = nil
-        //EventList.text = nil
-        CalendarView.reloadData()
+        var index = 0
+        for n in 0...Dates.count - 1 {
+            if Dates[n] == SelectedDate {
+                index = n
+            }
+        }
+        guard Dict[SelectedDate] == nil else{
+            Cal.Dates.remove(at: index)
+            Cal.Events.remove(at: index)
+            Cal.removeFromDates(name: SelectedDate)
+            Cal.removeFromEvents(name: Dict[SelectedDate]!)
+            CalendarView.reloadData()
+            Dict[SelectedDate] = nil
+            EventList.text = nil
+            return
+        }
     }
     
     
     func populateEvents() {
         for n in 0...Dates.count - 1 {
             Dict[Dates[n]] = Events[n]
+//            print(Dates[n])
+//            print(Events[n])
         }
 //        Events["Tuesday 12-07-2021"] = "Practice 7-9 PM"
 //        Events["Thursday 12-09-2021"] = "Practice 6:30-8:30PM"
@@ -107,16 +137,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         EventList.sizeToFit()
     }
     
-    func calendar(_ _calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE MM-dd-YYYY"
-        let string = formatter.string(from: date)
-        if Dict[string] != nil {
-            return UIColor.init(displayP3Red: 0, green: 0.5, blue: 0.5, alpha: 0.5)
-        }else {
-            return nil
-        }
-    }
+//    func calendar(_ _calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "EEEE MM-dd-YYYY"
+//        let string = formatter.string(from: date)
+//        if Dict[string] != nil {
+//            return UIColor.init(displayP3Red: 0, green: 0.5, blue: 0.5, alpha: 0.5)
+//        }else {
+//            return nil
+//        }
+//    }
     /*
     // MARK: - Navigation
 

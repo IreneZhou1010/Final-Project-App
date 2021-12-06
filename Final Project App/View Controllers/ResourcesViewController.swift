@@ -14,15 +14,19 @@ import Firebase
 var Skills: [String] = []
 var Logistics: [String] = []
 var Social: [String] = []
+var Names: [String] = []
+var Links: [String] = []
 
 class ResourcesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
+    var NameToLink: [String: String] = [:]
+    @IBOutlet weak var NewName: UITextField!
+    @IBOutlet weak var NewLink: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var resources: [String]?
     var links: [String]?
     var Res = Resources()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +34,16 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
 //        resources = ["Instagram", "Twitter", "Contact Information", "How to Run Hex"]
 //        links = ["https://www.instagram.com/wuwultimate/?hl=en", "https://twitter.com/wuwultimate", "https://docs.google.com/spreadsheets/d/1O3_4wPRjNMc3eY8DjbEVdgWoo5ydn4ycROA2YWqZVC4/edit?usp=sharing", "https://ultiworld.com/2021/01/28/hexagon-the-bestagon-a-look-inside-the-hex-offense/"]
-        Res.fetchDataSocial { result in
-            Social = result
-            self.Res.Social = Social
+        Res.fetchDataNames { result in
+            Names = result
+            self.Res.Names = Names
             //self.resources = [Social,Logistics]
         }
-        print("Social length \(Social.count)")
+        Res.fetchDataLinks { result in
+            Links = result
+            self.Res.Links = Links
+        }
+        print("Social length \(Names.count)")
 //        Res.fetchDataLogistics { result in
 //            Logistics = result
 //            self.Ros.Logistics = Logistics
@@ -72,12 +80,12 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Social.count
+        return Names.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.textLabel!.text = Social[indexPath.row]
+        cell.textLabel!.text = Names[indexPath.row]
         return cell
     }
     
@@ -95,7 +103,7 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
             if let indexPath = tableView.indexPathForSelectedRow {
                 print("prep 2")
                 let destination = segue.destination as? ResourceViewer
-                destination!.link = Social[indexPath.row]
+                destination!.link = Links[indexPath.row]
             }
         }
         

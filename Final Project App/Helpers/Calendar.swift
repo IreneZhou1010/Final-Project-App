@@ -16,26 +16,30 @@ class Calendar {
     var Events:[String] = []
 
    
-//    func addToIH(name:String){
-//        let docRefIH = db.collection("roster").document("IH")
-//        docRefIH.setData(["Players" : self.IH])
-//    }
-//
-//    func addToLoca(name:String){
-//        let docRefLoca = db.collection("roster").document("Loca")
-//        docRefLoca.setData(["Players" : self.Loca])
-//    }
-//
-//
-//
-//    func removeFromIH(name:String) {
-//        let docRefIH = db.collection("roster").document("IH")
-//        docRefIH.setData(["Players" : self.IH])
-//    }
-//    func removeFromLoca(name:String) {
-//        let docRefIH = db.collection("roster").document("Loca")
-//        docRefIH.setData(["Players" : self.Loca])
-//    }
+    func addToDates(name:String){
+        print("adding to dates")
+        let docRefDates = db.collection("calendar").document("Dates")
+        docRefDates.setData(["calendar" : self.Dates])
+    }
+
+    func addToEvents(name:String){
+        print("adding to events")
+        let docRefEvents = db.collection("calendar").document("Events")
+        docRefEvents.setData(["calendar" : self.Events])
+    }
+
+
+
+    func removeFromDates(name:String) {
+        print("removing from dates")
+        let docRefDates = db.collection("calendar").document("Dates")
+        docRefDates.setData(["calendar" : self.Dates])
+    }
+    func removeFromEvents(name:String) {
+        print("removing from events")
+        let docRefEvents = db.collection("calendar").document("Events")
+        docRefEvents.setData(["calendar" : self.Events])
+    }
     
     func fetchDataDates (_ completion: @escaping ([String]) -> Void) {
         print("fetching dates")

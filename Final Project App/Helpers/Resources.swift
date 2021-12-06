@@ -18,20 +18,21 @@ import UIKit
 
 class Resources {
     private var db = Firestore.firestore()
-    var Social:[String] = []
+    var Names:[String] = []
+    var Links:[String] = []
 
     
-    func addToSocial(name:String){
+    func addToNames(name:String){
         let docRefSocial = db.collection("resources").document("Names")
-        docRefSocial.setData(["Names" : self.Social])
+        docRefSocial.setData(["Names" : self.Names])
     }
 
-    func removeFromSocial(name:String) {
+    func removeFromNames(name:String) {
         let docRefIH = db.collection("resources").document("Names")
-        docRefIH.setData(["Names" : self.Social])
+        docRefIH.setData(["Names" : self.Names])
     }
         
-        func fetchDataSocial (_ completion: @escaping ([String]) -> Void) {
+        func fetchDataNames(_ completion: @escaping ([String]) -> Void) {
             let docRefIH = db.collection("resources").document("Names")
             docRefIH.getDocument { (document, error) in
                 if let document = document, document.exists {
@@ -53,7 +54,7 @@ class Resources {
                                                         }
 
                             else if (items == ","){
-                                self.Social.append(String(eachName))
+                                self.Names.append(String(eachName))
                                 eachName.removeAll()
 
                                 semaphore.signal()
@@ -66,13 +67,73 @@ class Resources {
                                 semaphore.signal()
                             }
                         }
-                        self.Social.append(String(eachName))
+                        self.Names.append(String(eachName))
                         semaphore.wait()
 
                         DispatchQueue.main.async {
                             // call the completion, but we are doing it only once,
                             // when the function is finished with its work
-                            completion(self.Social)
+                            completion(self.Names)
+                        }
+                    }
+
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
+    func addToLinks(name:String){
+        let docRefSocial = db.collection("resources").document("Links")
+        docRefSocial.setData(["Links" : self.Links])
+    }
+
+    func removeFromLinks(name:String) {
+        let docRefIH = db.collection("resources").document("Links")
+        docRefIH.setData(["Links" : self.Links])
+    }
+        
+        func fetchDataLinks (_ completion: @escaping ([String]) -> Void) {
+            let docRefIH = db.collection("resources").document("Links")
+            docRefIH.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+
+                    let begin = dataDescription.firstIndex(of: "(")
+                    let end = dataDescription.firstIndex(of: ")")
+                    let range = begin!..<end!
+                    let pureData = dataDescription[range]
+
+                    var eachName = String()
+
+                    let semaphore = DispatchSemaphore(value: 0)
+
+                    DispatchQueue.global().async {
+                        for items in pureData {
+                            if (items == "("){
+                                semaphore.signal()
+                                                        }
+
+                            else if (items == ","){
+                                self.Links.append(String(eachName))
+                                eachName.removeAll()
+
+                                semaphore.signal()
+                            }
+                            else if (items == "\n"){
+                                semaphore.signal()
+                            }
+                            else{
+                                eachName.append(items)
+                                semaphore.signal()
+                            }
+                        }
+                        self.Links.append(String(eachName))
+                        semaphore.wait()
+
+                        DispatchQueue.main.async {
+                            // call the completion, but we are doing it only once,
+                            // when the function is finished with its work
+                            completion(self.Links)
                         }
                     }
 
