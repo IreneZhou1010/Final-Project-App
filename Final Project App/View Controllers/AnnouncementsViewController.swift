@@ -44,6 +44,8 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -76,13 +78,21 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         
-        
+        //NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
         
         //tableView.reloadData()
     }
     
+    
+     
+    /*@objc func loadList(notification: NSNotification){
+        //load data here
+        self.tableView.reloadData()
+    }*/
+    
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     // number of rows in table view

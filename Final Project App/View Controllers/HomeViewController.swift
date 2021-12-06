@@ -20,6 +20,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var messagingButton: UIButton!
     @IBOutlet weak var galleryButton: UIButton!
     
+    private let storage = Storage.storage().reference()
+    
     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
     
     
@@ -62,16 +64,37 @@ class HomeViewController: UIViewController {
         messagingButton.layer.borderColor = UIColor.black.cgColor
         galleryButton.layer.borderColor = UIColor.black.cgColor
         
-/*        let url = (Auth.auth().currentUser?.photoURL)!
-        
-        if let data = try? Data(contentsOf: url) {
-                        if let image = UIImage(data: data) {
-                            userProfilePicture.image = image
-                        }
-                    }
-        
-        */
+        loadProfilePic()
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+        
+    func loadProfilePic(){
+        let url = (Auth.auth().currentUser?.photoURL)!
+        
+        let stringversionofurl = url.absoluteString
+    
+        
+        self.storage.child(stringversionofurl).downloadURL(completion: { url, error in
+            guard let url = url, error == nil else{
+                return
+            }
+            
+            let task = URLSession.shared.dataTask(with: url, completionHandler:  { data, _, error in
+                guard let data = data, error == nil else{
+                    print("Error Occured")
+                    return
+                }
+                DispatchQueue.main.async {
+                    let image = UIImage(data: data)
+                    self.userProfilePicture.image = image
+                }
+               
+            })
+            task.resume()
+            //self.collectionView.reloadData()
+            
+        })
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

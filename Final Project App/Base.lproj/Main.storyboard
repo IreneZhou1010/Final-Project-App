@@ -203,6 +203,14 @@
                                 <rect key="frame" x="84" y="237" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duM-dR-03W" userLabel="Edit Profile Picture">
+                                <rect key="frame" x="145" y="407" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit profile photo"/>
+                                <connections>
+                                    <action selector="changeProfilePic:" destination="hoA-Fw-PBb" eventType="touchUpInside" id="aHA-ym-JyH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aGg-t0-ymC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -320,7 +328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmY-vf-Srl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="2011"/>
+            <point key="canvasLocation" x="1141.5384615384614" y="2010.42654028436"/>
         </scene>
         <!--New Announcement VC-->
         <scene sceneID="H2A-cL-1hK">
@@ -415,11 +423,14 @@
                     <connections>
                         <outlet property="charCount" destination="DnZ-vD-pqD" id="J4H-7L-FTO"/>
                         <outlet property="charLimitReminder" destination="Yyl-y1-MOH" id="OHw-Yu-Di4"/>
+                        <outlet property="contentText" destination="nGz-nd-Jyg" id="wyF-B1-x8y"/>
                         <outlet property="navBar" destination="HGS-II-1ly" id="f91-Hw-uKi"/>
                         <outlet property="passcodeLabel" destination="VyP-kM-KgS" id="rio-Vk-uDI"/>
                         <outlet property="passwordInput" destination="EY3-Sd-tIy" id="fEM-3K-EbI"/>
                         <outlet property="picker" destination="XrN-gY-Fde" id="Wh9-L9-dcr"/>
+                        <outlet property="reminderText" destination="Yyl-y1-MOH" id="Ekz-he-dCv"/>
                         <outlet property="titleText" destination="8o1-MB-2qh" id="aHa-0G-wEg"/>
+                        <outlet property="typeOfAnnouncementText" destination="xdK-BJ-Cy6" id="46u-Sr-QWq"/>
                         <outlet property="userAddAnnouncement" destination="Cgd-IR-Tvf" id="agu-xZ-za5"/>
                         <outlet property="userContent" destination="Ave-Os-Uyj" id="xSy-bF-Tdx"/>
                         <outlet property="userTitleInput" destination="Wae-3c-vmv" id="sVF-rY-2bA"/>
@@ -1035,9 +1046,10 @@
                                     <segue destination="hoA-Fw-PBb" kind="show" id="g0T-A4-xLO"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="trash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-gx-1jj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-gx-1jj">
                                 <rect key="frame" x="307" y="87.333333333333314" width="67" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="tertiarySystemBackgroundColor"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -1101,7 +1113,7 @@
     </scenes>
     <resources>
         <image name="WUWUIcon" width="604" height="280"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -1134,6 +1146,9 @@
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

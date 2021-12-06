@@ -67,7 +67,9 @@ class MessagingViewController: UIViewController, UIImagePickerControllerDelegate
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func changeProfilePicture(_ sender: Any) {
+    
+   
+    @IBAction func changeProfilePic(_ sender: Any) {
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true //crop image to square
@@ -76,11 +78,6 @@ class MessagingViewController: UIViewController, UIImagePickerControllerDelegate
         let url = (Auth.auth().currentUser?.photoURL)!
         
         let stringversionofurl = url.absoluteString
-    
-        
-       
-        
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

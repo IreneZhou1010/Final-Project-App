@@ -11,7 +11,9 @@ import Firebase
 
 class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
-
+    @IBOutlet var contentText: UILabel!
+    
+    @IBOutlet var reminderText: UILabel!
     
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var picker: UIPickerView!
@@ -23,6 +25,8 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     @IBOutlet weak var charLimitReminder: UILabel!
     @IBOutlet weak var navBar: UINavigationItem!
     
+    @IBOutlet var typeOfAnnouncementText: UILabel!
+    
     @IBOutlet weak var userTitleInput: UITextField!
     var announcementContent : [String] = []
     var announcementType: [String] = []
@@ -31,20 +35,6 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     let pickerChoices = ["Important", "Social", "Tournament"]
     
     @IBOutlet weak var userAddAnnouncement: UIButton!
-    /*func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        print("In this fxn")
-        // get the current text, or use an empty string if that failed
-        let currentText = textView.text ?? ""
-
-        // attempt to read the range they are trying to change, or exit if we can't
-        guard let stringRange = Range(range, in: currentText) else { return false }
-
-        // add their new text to the existing text
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: text)
-
-        // make sure the result is under 16 characters
-        return updatedText.count <= 16
-    }*/
     
     
     func textViewDidChange(_ textView: UITextView) {
@@ -136,15 +126,61 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
         print("Plan to add ", titleToAdd, contentToAdd, typeToAdd)
       
         let docRefContent = db.collection("announcements").document("AnnouncementContent")
+        
+        let docRefTitle = db.collection("announcements").document("AnnouncementTitle")
+        
+        let docRefType = db.collection("announcements").document("AnnouncementType")
+        
         fetchDataAnnouncementContent{ result in
             self.announcementContent = result
             self.announcementContent.append(contentToAdd ?? "empty announcement") //expect that I know that won't happen
             docRefContent.setData(["AnnouncementContent" : self.announcementContent])
+            
+            
         }
+        
+        fetchDataAnnouncementTitle{ result in
+            self.titlesOfCells = result
+            self.titlesOfCells.append(titleToAdd ?? "Untitled") //expect that I know that won't happen
+            docRefTitle.setData(["AnnouncementTitle" : self.titlesOfCells])
+            
+            
+        }
+        
+        fetchDataAnnouncementType{ result in
+            self.announcementType = result
+            self.announcementType.append(typeToAdd ?? "Important") //expect that I know that won't happen
+            docRefType.setData(["AnnouncementType" : self.announcementType])
+            
+            
+        }
+        
+        reloadScreen()
         
         
     }
     
+    func reloadScreen(){
+        print("In the reload screen fxn")
+        
+        picker.isHidden = true
+        userContent.isHidden = true
+        userTitleInput.isHidden = true
+        passwordInput.isHidden = true
+        userAddAnnouncement.isHidden = true
+        
+        titleText.text = ""
+        charCount.text = ""
+        passcodeLabel.text = ""
+        contentText.text = ""
+        reminderText.text = ""
+        charLimitReminder.text = ""
+        
+        self.view.backgroundColor = UIColor.init(displayP3Red: 0.757, green: 0.882, blue: 0.757, alpha: 1)
+        typeOfAnnouncementText.text = "Announcement added!"
+        
+        
+    }
     
     func fetchDataAnnouncementContent(_ completion: @escaping ([String]) -> Void){
         let docRefAnnouncementC = db.collection("announcements").document("AnnouncementContent")
