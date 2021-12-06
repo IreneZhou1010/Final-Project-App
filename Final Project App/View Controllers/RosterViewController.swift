@@ -65,7 +65,24 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            if indexPath.section == 0 {
+                // IH
+                Ros.IH.remove(at: indexPath.row)
+                Ros.removeFromIH(name: roster[indexPath.section][indexPath.row])
+            }
+            else{
+                // Loca
+                Ros.Loca.remove(at: indexPath.row)
+                Ros.removeFromLoca(name: roster[indexPath.section][indexPath.row])
+            }
+            roster[indexPath.section].remove(at: indexPath.row)
+            self.rosterView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rosterView.delegate = self

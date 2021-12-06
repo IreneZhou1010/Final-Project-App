@@ -26,6 +26,17 @@ class Roster {
         docRefLoca.setData(["Players" : self.Loca])
     }
     
+    
+    
+    func removeFromIH(name:String) {
+        let docRefIH = db.collection("roster").document("IH")
+        docRefIH.setData(["Players" : self.IH])
+    }
+    func removeFromLoca(name:String) {
+        let docRefIH = db.collection("roster").document("Loca")
+        docRefIH.setData(["Players" : self.Loca])
+    }
+    
     func fetchDataIH (_ completion: @escaping ([String]) -> Void) {
         let docRefIH = db.collection("roster").document("IH")
         docRefIH.getDocument { (document, error) in
@@ -57,7 +68,6 @@ class Roster {
                             semaphore.signal()
                         }
                         else{
-                            print("in ih items are ", items)
                             eachName.append(items)
                             semaphore.signal()
                         }
