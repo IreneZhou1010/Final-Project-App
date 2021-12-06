@@ -442,24 +442,81 @@
                                 <rect key="frame" x="0.0" y="88" width="390" height="422"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mY-a5-U7g">
+                                <rect key="frame" x="152" y="563" width="86" height="30"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <state key="normal" title="Clear Events">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="ClearEvents:" destination="0Qz-dJ-Jup" eventType="touchUpInside" id="1ys-7L-KXA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event List for Selected Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAv-Pg-NqW">
+                                <rect key="frame" x="89" y="609" width="211" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-As-P1a">
+                                <rect key="frame" x="16" y="646" width="358" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yCn-Ds-9Jg">
+                                <rect key="frame" x="13" y="513" width="275" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="275" id="Pbs-Km-OMV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="NewEvent:" destination="0Qz-dJ-Jup" eventType="editingDidEnd" id="cfd-9n-VlX"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBA-si-dG9">
+                                <rect key="frame" x="304" y="513" width="70" height="30"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <state key="normal" title="Add Event">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="AddEvent:" destination="0Qz-dJ-Jup" eventType="touchUpInside" id="KUw-XX-2TB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="44o-Qm-kXf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yCn-Ds-9Jg" firstAttribute="top" secondItem="44o-Qm-kXf" secondAttribute="top" constant="425" id="370-bp-mUL"/>
+                            <constraint firstItem="hBA-si-dG9" firstAttribute="leading" secondItem="yCn-Ds-9Jg" secondAttribute="trailing" constant="16" id="6cF-J7-IbM"/>
+                            <constraint firstItem="44o-Qm-kXf" firstAttribute="trailing" secondItem="SmR-As-P1a" secondAttribute="trailing" constant="16" id="8sX-0K-EkS"/>
                             <constraint firstItem="44o-Qm-kXf" firstAttribute="trailing" secondItem="TIa-ok-Ln8" secondAttribute="trailing" id="BxU-Jr-lZ8"/>
+                            <constraint firstItem="BAv-Pg-NqW" firstAttribute="top" secondItem="2mY-a5-U7g" secondAttribute="bottom" constant="16" id="Dpw-uU-G1h"/>
+                            <constraint firstItem="SmR-As-P1a" firstAttribute="leading" secondItem="44o-Qm-kXf" secondAttribute="leading" constant="16" id="JNJ-IP-B83"/>
+                            <constraint firstItem="44o-Qm-kXf" firstAttribute="trailing" secondItem="2mY-a5-U7g" secondAttribute="trailing" constant="152" id="NXR-W0-6Vb"/>
+                            <constraint firstItem="hBA-si-dG9" firstAttribute="top" secondItem="44o-Qm-kXf" secondAttribute="top" constant="425" id="Xhv-uI-kb7"/>
+                            <constraint firstItem="SmR-As-P1a" firstAttribute="top" secondItem="BAv-Pg-NqW" secondAttribute="bottom" constant="16" id="aGC-gm-fyf"/>
                             <constraint firstItem="TIa-ok-Ln8" firstAttribute="leading" secondItem="44o-Qm-kXf" secondAttribute="leading" id="cjb-a4-CvK"/>
+                            <constraint firstItem="44o-Qm-kXf" firstAttribute="trailing" secondItem="BAv-Pg-NqW" secondAttribute="trailing" constant="90" id="fbC-N1-0Gd"/>
+                            <constraint firstItem="2mY-a5-U7g" firstAttribute="top" secondItem="yCn-Ds-9Jg" secondAttribute="bottom" constant="16" id="nyK-aS-jWf"/>
+                            <constraint firstItem="44o-Qm-kXf" firstAttribute="trailing" secondItem="hBA-si-dG9" secondAttribute="trailing" constant="16" id="oFC-Am-Xj6"/>
+                            <constraint firstItem="BAv-Pg-NqW" firstAttribute="leading" secondItem="44o-Qm-kXf" secondAttribute="leading" constant="89" id="qbS-Ft-GQA"/>
                             <constraint firstItem="44o-Qm-kXf" firstAttribute="bottom" secondItem="TIa-ok-Ln8" secondAttribute="bottom" constant="300" id="rcT-nU-j7o"/>
                             <constraint firstItem="TIa-ok-Ln8" firstAttribute="top" secondItem="44o-Qm-kXf" secondAttribute="top" id="uEX-MJ-Ujt"/>
+                            <constraint firstItem="2mY-a5-U7g" firstAttribute="leading" secondItem="44o-Qm-kXf" secondAttribute="leading" constant="152" id="zAz-rv-UcR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="dfo-LK-dIx"/>
                     <connections>
                         <outlet property="CalendarView" destination="TIa-ok-Ln8" id="aMn-Vt-kbZ"/>
+                        <outlet property="EventList" destination="SmR-As-P1a" id="CE3-zk-GfC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4kj-yG-JQx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="380" y="691"/>
+            <point key="canvasLocation" x="380" y="690.99526066350711"/>
         </scene>
         <!--Resources-->
         <scene sceneID="XI9-zf-Fyd">
@@ -977,6 +1034,9 @@
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -988,6 +1048,12 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
