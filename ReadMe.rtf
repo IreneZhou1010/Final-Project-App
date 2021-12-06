@@ -3,6 +3,9 @@
 }
 {\colortbl;\red255\green255\blue255;}
 {\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
 \margl1440\margr1440\vieww9000\viewh8400\viewkind0
 \pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
@@ -11,7 +14,9 @@
 \f1\b\fs40 \
 \pard\pardeftab560\slleading20\partightenfactor0
 
-\f2\b0\fs26 \cf0 Exec: it displays the board members. When a specific person is clicked, their picture, name and position are displayed. \
+\f2\b0\fs26 \cf0 User Authentication: We have set up user authentication using fire base. A user can create an account by entering their first name, last name, email, and a strong password (must be 8 letters long, with one Capitalization, and one special character).\
+\
+Exec: it displays the board members. When a specific person is clicked, their picture, name and position are displayed. \
 \pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
 \cf0 \
 \pard\pardeftab560\slleading20\partightenfactor0
@@ -19,4 +24,36 @@
 \
 Resources: It displays a list of resources in a table view. When selected, a Webview is opened that takes the user to the corresponding link.\
 \
-Calendar: It displays a calendar that can be scrolled through horizontally. When a date is clicked on, the events on that day can be viewed and events can be added to or cleared from the date.}
+Calendar: It displays a calendar that can be scrolled through horizontally. When a date is clicked on, the events on that day can be viewed and events can be added to or cleared from the date.\
+\
+Gallery:\
+Here users can share photos from team events and also save photos to their phone. A user uploads a photo by clicking add photos which them take them to their photo library. When a user clicks on a photo, it present a a new view controller with the photo blown up. On that page, if they click \'93Save Photo,\'94 it will save the selected photo to their library on their phone. \
+\
+The Gallery is a collection view. We uploaded and downloaded the urls with the image data through Firebase storage which was something very new we had to learn and difficult.\
+\
+Announcements:\
+The announcements tab is an easy place for team members to go to get any important updates in an easy digestible form. Right now, it has 3 different categories for announcements: important, tournament and frisbee. We chose to have the important be bolded and red so that\'92s what stands out to the user when they first open. The user can scroll through the announcements somewhat similar to how Canvas announcements are. \
+We thought it would be smartest to implement this in such a way that the newest announcement goes up at the top, so the user is constantly able to see the most relevant announcements.\
+This feature also has a function that allows the user to see who the announcement was posted by which both:\
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	0.	}Is a security feature, can hold people accountable for their announcements so that they aren\'92t just posting random stuff and could potentially then be blocked from the app.\
+{\listtext	0.	}Allows everyone to see who is saying what\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 To add the announcement, the user is able to fill out a quick and easy form:\
+\pard\pardeftab560\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	0.	}Announcement has to have a title to be posted and will turn red if not.\
+{\listtext	0.	}Content must be less than or equal to 200 characters. These are not meant to be super long posts and keeps the formatting nice.\
+{\listtext	0.	}Type of announcement: automatically will sort it so that it shows up as the correct type.\
+{\listtext	0.	}Password: Password protected so not just anyone who downloads this app from the App Store can post, this password can be shared through other channels to anyone who needs it. 
+\f1\b For grading purposes, it is \'93wuwuannounce21\'94\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f2\b0 \cf0 Profile:\
+Simple look at user\'92s name and profile picture, so user can see who they are logged in as. User can also use this screen to update their profile picture to any picture that is on their phone. \
+\
+\
+\
+\
+}

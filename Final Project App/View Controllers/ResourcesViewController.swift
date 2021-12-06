@@ -32,49 +32,24 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-//        resources = ["Instagram", "Twitter", "Contact Information", "How to Run Hex"]
-//        links = ["https://www.instagram.com/wuwultimate/?hl=en", "https://twitter.com/wuwultimate", "https://docs.google.com/spreadsheets/d/1O3_4wPRjNMc3eY8DjbEVdgWoo5ydn4ycROA2YWqZVC4/edit?usp=sharing", "https://ultiworld.com/2021/01/28/hexagon-the-bestagon-a-look-inside-the-hex-offense/"]
+
         Res.fetchDataNames { result in
             Names = result
             self.Res.Names = Names
-            //self.resources = [Social,Logistics]
+            
         }
         Res.fetchDataLinks { result in
             Links = result
             self.Res.Links = Links
         }
         print("Social length \(Names.count)")
-//        Res.fetchDataLogistics { result in
-//            Logistics = result
-//            self.Ros.Logistics = Logistics
-//            self.resources = [Social, Logistics]
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let viewContainer = UIView(frame: CGRect(x:0, y:0, width: tableView.frame.width, height: 40))
-//        viewContainer.backgroundColor = UIColor.lightGray
-//        let labelHeader = UILabel(frame: CGRect(x:0, y:0, width: 200, height: 30))
-//
-//        labelHeader.textColor = UIColor.white
-//        if section == 0{
-//            labelHeader.text = "Skills"
-//        }
-//        if section == 1{
-//            labelHeader.text = "Logistics"
-//        }
-//        if section == 2{
-//            labelHeader.text = "Social Media"
-//        }
-//
-//        viewContainer.addSubview(labelHeader)
-//        return viewContainer
-//    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return 3
         return 1
     }
     
@@ -90,18 +65,18 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
+        
         let rvc = ResourceViewer()
         navigationController?.pushViewController(rvc, animated: true)
         performSegue(withIdentifier: "segue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("prep 1")
+        
         if segue.identifier == "segue" {
-            print("prep 1.5")
+            
             if let indexPath = tableView.indexPathForSelectedRow {
-                print("prep 2")
+               
                 let destination = segue.destination as? ResourceViewer
                 destination!.link = Links[indexPath.row]
             }

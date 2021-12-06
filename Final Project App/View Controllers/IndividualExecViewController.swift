@@ -34,25 +34,11 @@ class IndividualExecViewController: UIViewController {
         pos.textAlignment = .center
         
         
-//        var rating = UITextField(frame: CGRect(x: 16, y: 563, width: 358, height: 36))
-//        rating.text = String("Average vote: \(movie.vote_average)")
-//        rating.textAlignment = .center
-        
         
         view.addSubview(name)
         view.addSubview(image)
         view.addSubview(pos)
     }
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

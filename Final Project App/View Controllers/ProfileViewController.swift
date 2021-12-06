@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
         self.profilePic.frame = CGRect(x: self.view.frame.midX - 75, y: 200, width: 150, height: 150)
+        self.profilePic.contentMode = .scaleAspectFit
         
         
         
@@ -111,6 +112,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                         let image = UIImage(data: data)
                         self.profilePic.image = image
                         self.profilePic.frame = CGRect(x: self.view.frame.midX - 75, y: 200, width: 150, height: 150)
+                        self.profilePic.contentMode = .scaleAspectFit
+
                         
                     }
                    

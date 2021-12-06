@@ -63,38 +63,11 @@ class HomeViewController: UIViewController {
         messagingButton.layer.borderColor = UIColor.systemGray5.cgColor
         galleryButton.layer.borderColor = UIColor.systemGray5.cgColor
         
-        loadProfilePic()
+        //loadProfilePic()
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
         
-    func loadProfilePic(){
-        let url = (Auth.auth().currentUser?.photoURL) ?? URL(string: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-        
-        let stringversionofurl = url!.absoluteString
     
-        
-        self.storage.child(stringversionofurl).downloadURL(completion: { url, error in
-            guard let url = url, error == nil else{
-                return
-            }
-            
-            let task = URLSession.shared.dataTask(with: url, completionHandler:  { data, _, error in
-                guard let data = data, error == nil else{
-                    print("Error Occured")
-                    return
-                }
-                DispatchQueue.main.async {
-                    let image = UIImage(data: data)
-                    self.userProfilePicture.image = image
-                }
-               
-            })
-            task.resume()
-            //self.collectionView.reloadData()
-            
-        })
-        
-    }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationItem.hidesBackButton = false;
@@ -118,16 +91,13 @@ class HomeViewController: UIViewController {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ResourcesViewController") as! ResourcesViewController
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
-    @IBAction func pushToGuru(_ sender: Any) {
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "GuruViewController") as! GuruViewController
-        self.navigationController?.pushViewController(nextViewController, animated: true)
-    }
+
     @IBAction func pushToExec(_ sender: Any) {
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ExecViewController") as! ExecViewController
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     @IBAction func pushToMessaging(_ sender: Any) {
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MessagingViewController") as! MessagingViewController
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     @IBAction func pushToGallery(_ sender: Any) {

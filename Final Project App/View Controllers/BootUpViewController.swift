@@ -15,27 +15,9 @@ class BootUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpElements()
-        
-        //try the following code for segue
-        //self.performSegue(withIdentifier: "toCreateUsername", sender: self)
+
     }
     
-    //for design, make functions in Utilities Class
-    func setUpElements(){
-        
-        //style elements
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

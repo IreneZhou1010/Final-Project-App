@@ -36,7 +36,6 @@ class SignUpViewController: UIViewController {
         //hide error label
         errorLabel.alpha = 0
         
-        //for design, make functions in Utilities Class
     }
     
     func validateFields() -> String?{
@@ -88,8 +87,7 @@ class SignUpViewController: UIViewController {
                     pChanger?.displayName = firstName + " " + lastName
                     pChanger?.photoURL = URL(string: "http://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png")
                     pChanger?.commitChanges()
-                    print("This user is ", Auth.auth().currentUser?.displayName)
-                    print("Their photo url is ", Auth.auth().currentUser?.photoURL)
+                    
                     
                     db.collection("users").addDocument(data: dataDict) { (error_) in
                         if error_ != nil{
@@ -122,14 +120,5 @@ class SignUpViewController: UIViewController {
         view.window?.makeKeyAndVisible()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

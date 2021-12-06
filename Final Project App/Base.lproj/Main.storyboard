@@ -194,7 +194,7 @@
         <!--Profile-->
         <scene sceneID="SIT-sL-qiB">
             <objects>
-                <viewController storyboardIdentifier="MessagingViewController" id="hoA-Fw-PBb" customClass="MessagingViewController" customModule="Final_Project_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="hoA-Fw-PBb" customClass="ProfileViewController" customModule="Final_Project_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="awH-zu-cNx">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

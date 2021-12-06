@@ -53,38 +53,29 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         
         fetchDataAnnouncementType{ type in
             self.announcementType = type
-            print("types are ", type)
-            
         }
         
         fetchDataAnnouncementTitle{ title in
             self.titlesOfCells = title
-            print("Title was ", title)
-            
+        }
+        
+        
+        
+        fetchDataPostedBy { result in
+            self.announcementPoster = result
         }
         
         fetchDataAnnouncementContent { result in
             self.announcementContent = result
-            print("RESULT WAS ", result)
-            
+            self.tableView.reloadData()
         }
         
-        fetchDataPostedBy { result in
-            self.announcementPoster = result
-            print("RESULT WAS ", result)
-            
-        }
-        
-        print("announcement content is ", announcementContent)
         self.navigationItem.hidesBackButton = false
         self.parent?.title = "ANNOUNCEMENTS"
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        /*NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-        //tableView.reloadData()*/
+    
     }
     
     @IBAction func unwindToViewControllerA(segue: UIStoryboardSegue) {
@@ -97,41 +88,26 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 self.fetchDataAnnouncementType{ type in
                     self.announcementType = type
-                    print("types are ", type)
                     
                     self.typeDone = true
                 }
                 
                 self.fetchDataAnnouncementTitle{ title in
                     self.titlesOfCells = title
-                    print("Title was ", title)
                     
                     self.titleDone = true
                 }
                 
                 self.fetchDataPostedBy { result in
                     self.announcementPoster = result
-                    print("RESULT WAS ", result)
-                    
                 }
                 
                 self.fetchDataAnnouncementContent { result in
                     self.announcementContent = result
-                    print("RESULT WAS ", result)
                     
                     self.tableView.reloadData()
                 }
                 
-                
-                
-                print("Am I even trying?")
-                
-                print("BEFORE number of cells is " , self.tableView.numberOfRows(inSection: 0))
-                
-                print("The contents are ", self.announcementContent)
-                //self.tableView.reloadData()
-                
-                print("AFTER number of cells is " , self.tableView.numberOfRows(inSection: 0))
                 
            }
         }
@@ -140,8 +116,10 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
      
    
     override func viewDidAppear(_ animated: Bool) {
+        /*while(self.announcementContent.count == 0){
+            print("hello")
+        }*/
         self.tableView.reloadData()
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     // number of rows in table view
@@ -152,8 +130,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let lastCellNumber = announcementContent.count - 1
-        print("at least I am trying")
-        print("number of cells is " , self.tableView.numberOfRows(inSection: 0))
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
         cell.importantTitle.text = self.titlesOfCells[lastCellNumber - indexPath.row]
         cell.importantText.text = self.announcementContent[lastCellNumber - indexPath.row]
@@ -166,7 +142,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -187,7 +163,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
             cellToEdit.importantTitle.font = UIFont.systemFont(ofSize: 19, weight: UIFont.Weight.bold) //size of all titles should be 19, it is the weight that I want to control, but could also adjust the size here if so pleased
             //note: order of boldness goes ultralight -> thin -> light -> regular -> medium -> semibold -> bold -> heavy -> black
             
-            //other customizable configurations:
             
         }
         if(announcementType[indexOfCell] == "Social"){
@@ -208,7 +183,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
             if let document = document, document.exists{
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 
-                print("Announcement data description ", dataDescription)
                 let begin = dataDescription.firstIndex(of: "(")
                 let end = dataDescription.firstIndex(of: ")")
                 let range = begin!..<end!
@@ -218,7 +192,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 
                 let semaphore = DispatchSemaphore(value: 0)
-                print("pure data from fb is , " , pureData)
                 
                 DispatchQueue.global().async {
                     for items in pureData{
@@ -236,7 +209,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                         }
                         else{
                             eachType.append(items)
-                            print("each type now = ", eachType)
                             semaphore.signal()
                         }
                         
@@ -254,7 +226,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                
             }
             else{
-                print("Sorry bud")
+                
             }
         }
     }
@@ -274,7 +246,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 
                 let semaphore = DispatchSemaphore(value: 0)
-                print("pure data from fb is , " , pureData)
                 
                 DispatchQueue.global().async {
                     for items in pureData{
@@ -310,7 +281,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                
             }
             else{
-                print("Sorry bud")
+                //do nothing
             }
         }
     }
@@ -331,7 +302,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 
                 let semaphore = DispatchSemaphore(value: 0)
-                print("pure data from fb is , " , pureData)
                 
                 DispatchQueue.global().async {
                     for items in pureData{
@@ -367,7 +337,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                
             }
             else{
-                print("Sorry bud")
+                //do nothing
             }
         }
     }
@@ -388,7 +358,6 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                 
                 
                 let semaphore = DispatchSemaphore(value: 0)
-                print("pure data from fb is , " , pureData)
                 
                 DispatchQueue.global().async {
                     for items in pureData{
@@ -424,7 +393,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
                
             }
             else{
-                print("Sorry bud")
+                //do nothing
             }
         }
         

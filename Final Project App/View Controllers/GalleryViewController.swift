@@ -22,20 +22,16 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     
     //storage reference
     private let storage = Storage.storage().reference()
-    //let userDefault = UserDefaults.standard
+
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
-       // let imageURLS = (self.userDefault.object(forKey: "imageURLS") as? [String]) ?? []
-        //print("number of urls: \(imageURLS.count)")
-        print("about to fetch")
         fetchData()
             
         
         DispatchQueue.main.async {
-            print("about to reload")
             self.collectionView.reloadData()
             self.photoCount = self.theData.count
         }
@@ -47,8 +43,6 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
         view.addSubview(navBar)
 
         let navItem = UINavigationItem(title: "Back")
-        //let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(selectorName:))
-        //navItem.rightBarButtonItem = doneItem
 
         navBar.setItems([navItem], animated: false)
     }
@@ -62,11 +56,9 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        //let vc = storyboard.instantiateViewController(withIdentifier: "SinglePictureVC") as! SinglePictureViewController
+        
         let test = SinglePictureViewController()
         test.theImage = theData[indexPath.item]
-        //vc.theImage = theData[indexPath.item]
 
         self.present(test, animated: true, completion: nil)
     }
@@ -133,7 +125,7 @@ class GalleryViewController: UIViewController, UICollectionViewDataSource, UICol
                    
                 })
                 task.resume()
-                //self.collectionView.reloadData()
+                
                 
             })
             

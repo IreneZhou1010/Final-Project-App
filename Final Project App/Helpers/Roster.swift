@@ -3,6 +3,7 @@
 //  Final Project App
 //
 //  Created by Irene Zhou on 11/26/21.
+//  code credit: https://www.youtube.com/watch?v=1HN7usMROt8&t=3009s
 //
 
 import Foundation
@@ -84,7 +85,6 @@ class Roster {
                 
             } else {
                 print("Document does not exist")
-                // completion(self.IH)
             }
         }
     }
@@ -136,7 +136,6 @@ class Roster {
                 
             } else {
                 print("Document does not exist")
-                // completion(self.IH)
             }
         }
     }
