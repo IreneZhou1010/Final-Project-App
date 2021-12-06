@@ -163,7 +163,7 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
     func reloadScreen(){
         print("In the reload screen fxn")
         
-        picker.isHidden = true
+        /*picker.isHidden = true
         userContent.isHidden = true
         userTitleInput.isHidden = true
         passwordInput.isHidden = true
@@ -178,6 +178,12 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
         
         self.view.backgroundColor = UIColor.init(displayP3Red: 0.757, green: 0.882, blue: 0.757, alpha: 1)
         typeOfAnnouncementText.text = "Announcement added!"
+        */
+        //sleep(3)
+        
+    
+        
+        //self.performSegue(withIdentifier: "wantToReloadTV", sender: self)
         
         
     }
@@ -226,6 +232,9 @@ class NewAnnouncementVC: UIViewController, UITextViewDelegate, UIPickerViewDeleg
                     
                     DispatchQueue.main.async {
                         completion(self.announcementContent)
+                        self.performSegue(withIdentifier: "wantToReloadTV", sender: self)
+                        
+                        
                     }
                 }
                 

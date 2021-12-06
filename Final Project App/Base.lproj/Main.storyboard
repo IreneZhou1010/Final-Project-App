@@ -434,9 +434,11 @@
                         <outlet property="userAddAnnouncement" destination="Cgd-IR-Tvf" id="agu-xZ-za5"/>
                         <outlet property="userContent" destination="Ave-Os-Uyj" id="xSy-bF-Tdx"/>
                         <outlet property="userTitleInput" destination="Wae-3c-vmv" id="sVF-rY-2bA"/>
+                        <segue destination="qeR-IM-f4T" kind="unwind" identifier="wantToReloadTV" animates="NO" unwindAction="unwindToViewControllerAWithSegue:" id="UCN-O5-mCc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Is-wT-bET" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="qeR-IM-f4T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2033.8461538461538" y="1396.9194312796208"/>
         </scene>

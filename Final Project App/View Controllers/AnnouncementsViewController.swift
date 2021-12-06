@@ -78,18 +78,57 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-        
-        //tableView.reloadData()
+        /*NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        //tableView.reloadData()*/
     }
     
+    @IBAction func unwindToViewControllerA(segue: UIStoryboardSegue) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            DispatchQueue.main.async {
+                self.announcementContent = []
+                self.announcementType = []
+                self.titlesOfCells = []
+                
+                self.fetchDataAnnouncementType{ type in
+                    self.announcementType = type
+                    print("types are ", type)
+                    
+                    self.typeDone = true
+                }
+                
+                self.fetchDataAnnouncementTitle{ title in
+                    self.titlesOfCells = title
+                    print("Title was ", title)
+                    
+                    self.titleDone = true
+                }
+                
+                self.fetchDataAnnouncementContent { result in
+                    self.announcementContent = result
+                    print("RESULT WAS ", result)
+                    
+                    self.contentDone = true
+                    
+                    self.tableView.reloadData()
+                }
+                
+                
+                print("Am I even trying?")
+                
+                print("BEFORE number of cells is " , self.tableView.numberOfRows(inSection: 0))
+                
+                print("The contents are ", self.announcementContent)
+                //self.tableView.reloadData()
+                
+                print("AFTER number of cells is " , self.tableView.numberOfRows(inSection: 0))
+                
+           }
+        }
+    }
     
      
-    /*@objc func loadList(notification: NSNotification){
-        //load data here
-        self.tableView.reloadData()
-    }*/
-    
+   
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
@@ -104,7 +143,8 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
+        print("at least I am trying")
+        print("number of cells is " , self.tableView.numberOfRows(inSection: 0))
         var cell:ImportantCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ImportantCell
         cell.importantTitle.text = self.titlesOfCells[indexPath.row]
         cell.importantText.text = self.announcementContent[indexPath.row]
