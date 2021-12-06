@@ -20,19 +20,19 @@ class Resources {
     private var db = Firestore.firestore()
     var Social:[String] = []
 
-
+    
     func addToSocial(name:String){
-        let docRefSocial = db.collection("resources").document("Social")
-        docRefSocial.setData(["Social" : self.Social])
+        let docRefSocial = db.collection("resources").document("Names")
+        docRefSocial.setData(["Names" : self.Social])
     }
 
     func removeFromSocial(name:String) {
-        let docRefIH = db.collection("resources").document("Social")
-        docRefIH.setData(["Social" : self.Social])
+        let docRefIH = db.collection("resources").document("Names")
+        docRefIH.setData(["Names" : self.Social])
     }
         
         func fetchDataSocial (_ completion: @escaping ([String]) -> Void) {
-            let docRefIH = db.collection("resources").document("Social")
+            let docRefIH = db.collection("resources").document("Names")
             docRefIH.getDocument { (document, error) in
                 if let document = document, document.exists {
                     let dataDescription = document.data().map(String.init(describing:)) ?? "nil"

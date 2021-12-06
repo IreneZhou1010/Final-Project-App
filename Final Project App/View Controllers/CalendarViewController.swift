@@ -30,16 +30,27 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
         
         Cal.fetchDataDates { result in
             self.Dates = result
+            print("Just fetched dates the result is ", self.Dates)
             self.Cal.Dates = self.Dates
         }
         print("Dates length \(Dates.count)")
         Cal.fetchDataEvents { result in
             self.Events = result
             self.Cal.Events = self.Events
+            //self.populateEvents()
         }
         print("Events length \(Events.count)")
-        populateEvents()
+        
+        //populateEvents()
+        
+        
+        //populateEvents()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.populateEvents()
+        print("Tryign to populate")
     }
 
     @IBOutlet weak var EventList: UILabel!
@@ -71,7 +82,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDe
     
     
     func populateEvents() {
-        for n in 0...Dates.count {
+        for n in 0...Dates.count - 1 {
             Dict[Dates[n]] = Events[n]
         }
 //        Events["Tuesday 12-07-2021"] = "Practice 7-9 PM"

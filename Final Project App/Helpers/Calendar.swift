@@ -39,12 +39,13 @@ class Calendar {
     
     func fetchDataDates (_ completion: @escaping ([String]) -> Void) {
         print("fetching dates")
-        let docRefDates = db.collection("calendar").document("dates")
+        let docRefDates = db.collection("calendar").document("Dates")
         docRefDates.getDocument { (document, error) in
             if let document = document, document.exists {
                 print("date document exists")
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 
+                print("Calendar data description ", dataDescription)
                 let begin = dataDescription.firstIndex(of: "(")
                 let end = dataDescription.firstIndex(of: ")")
                 let range = begin!..<end!

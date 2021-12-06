@@ -147,6 +147,7 @@ class AnnouncementsViewController: UIViewController, UITableViewDelegate, UITabl
             if let document = document, document.exists{
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 
+                print("Announcement data description ", dataDescription)
                 let begin = dataDescription.firstIndex(of: "(")
                 let end = dataDescription.firstIndex(of: ")")
                 let range = begin!..<end!

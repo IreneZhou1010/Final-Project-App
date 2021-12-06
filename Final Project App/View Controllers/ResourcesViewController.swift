@@ -23,6 +23,7 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
     var links: [String]?
     var Res = Resources()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -42,6 +43,9 @@ class ResourcesViewController: UIViewController, UITableViewDelegate, UITableVie
 //        }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        let viewContainer = UIView(frame: CGRect(x:0, y:0, width: tableView.frame.width, height: 40))
 //        viewContainer.backgroundColor = UIColor.lightGray
