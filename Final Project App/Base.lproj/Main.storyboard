@@ -981,36 +981,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Two WUs are better than one" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ny-wb-RUx">
-                                <rect key="frame" x="46" y="280" width="299" height="29"/>
+                                <rect key="frame" x="43" y="280" width="306" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="24"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pqZ-E4-Rz8">
                                 <rect key="frame" x="16" y="358" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Roster"/>
+                                <state key="normal" title="Roster">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="pushToRoster:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0KS-CM-fVp"/>
                                     <segue destination="Gtx-Xr-Ga2" kind="show" id="uef-JE-Qxo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="323-p5-0ke">
-                                <rect key="frame" x="229" y="582" width="145" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Exec"/>
-                                <connections>
-                                    <action selector="pushToExec:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3yg-oE-IR5"/>
-                                    <segue destination="buM-3Y-L9U" kind="show" id="tQr-gQ-mdH"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-R4-ofV">
                                 <rect key="frame" x="229" y="472" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Resources"/>
+                                <state key="normal" title="Resources">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="pushToResources:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ZV-RR-O1C"/>
                                     <segue destination="K4M-Cc-NSz" kind="show" id="8Lz-1q-wS6"/>
@@ -1020,27 +1014,21 @@
                                 <rect key="frame" x="16" y="472" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Calendar"/>
+                                <state key="normal" title="Calendar">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="pushToCalendar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bMX-JS-Olf"/>
                                     <segue destination="0Qz-dJ-Jup" kind="show" id="k2P-9k-VET"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5p-3h-9id">
-                                <rect key="frame" x="16" y="582" width="145" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Ultimate Guru"/>
-                                <connections>
-                                    <action selector="pushToGuru:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Luy-4Z-dyV"/>
-                                    <segue destination="KIx-wZ-R7C" kind="show" id="tBT-8g-gtz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJu-QV-RTT">
-                                <rect key="frame" x="229" y="692" width="145" height="86"/>
+                                <rect key="frame" x="229" y="579" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Gallery"/>
+                                <state key="normal" title="Gallery">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="pushToGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OwZ-mC-Rs9"/>
                                     <segue destination="mVD-xk-zWo" kind="presentation" id="okc-9R-pcm"/>
@@ -1050,17 +1038,22 @@
                                 <rect key="frame" x="229" y="358" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Announcements"/>
+                                <state key="normal" title="Announcements">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="pushToAnnoucements:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JyI-AX-0ux"/>
                                     <segue destination="Z5d-IA-loR" kind="show" id="scq-AO-FfV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqt-OE-KWY">
-                                <rect key="frame" x="16" y="692" width="145" height="86"/>
+                                <rect key="frame" x="123" y="673" width="145" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Profile"/>
+                                <state key="normal" title="Profile">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleShadowColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
                                 <connections>
                                     <action selector="pushToMessaging:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fjP-Dc-L4E"/>
                                     <segue destination="hoA-Fw-PBb" kind="show" id="g0T-A4-xLO"/>
@@ -1071,6 +1064,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="tertiarySystemBackgroundColor"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="323-p5-0ke">
+                                <rect key="frame" x="16" y="578" width="145" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Exec">
+                                    <color key="titleColor" red="0.56698354139999996" green="0.37949911559999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushToExec:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3yg-oE-IR5"/>
+                                    <segue destination="buM-3Y-L9U" kind="show" id="tQr-gQ-mdH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1081,7 +1086,6 @@
                         <outlet property="calendarButton" destination="jij-Nf-LZS" id="Myh-yh-KAt"/>
                         <outlet property="execButton" destination="323-p5-0ke" id="EO8-PM-ldz"/>
                         <outlet property="galleryButton" destination="rJu-QV-RTT" id="uDu-gb-Myi"/>
-                        <outlet property="guruButton" destination="C5p-3h-9id" id="TqB-Y5-8KW"/>
                         <outlet property="messagingButton" destination="wqt-OE-KWY" id="fbX-8h-AMj"/>
                         <outlet property="resourcesButton" destination="LYG-R4-ofV" id="aC2-EF-9TL"/>
                         <outlet property="rosterButton" destination="pqZ-E4-Rz8" id="2FU-jt-QFT"/>

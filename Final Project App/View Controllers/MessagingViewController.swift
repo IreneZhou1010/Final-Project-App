@@ -33,9 +33,9 @@ class MessagingViewController: UIViewController, UIImagePickerControllerDelegate
         
         
         
-        let url = (Auth.auth().currentUser?.photoURL)!
+        let url = (Auth.auth().currentUser?.photoURL) ?? URL(string: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
         
-        let stringversionofurl = url.absoluteString
+        let stringversionofurl = url!.absoluteString 
     
         
         self.storage.child(stringversionofurl).downloadURL(completion: { url, error in
