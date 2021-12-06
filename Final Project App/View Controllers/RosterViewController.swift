@@ -16,8 +16,11 @@ private var db = Firestore.firestore()
 
 
 class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate {
+    @IBOutlet weak var errorBar: UIView!
+    @IBOutlet weak var pwView: UIView!
     @IBOutlet weak var rosterView: UITableView!
     
+    @IBOutlet weak var pwEntry: UISearchBar!
     @IBOutlet weak var search: UISearchBar!
     @IBOutlet weak var addIH: UIButton!
     @IBOutlet weak var addLoca: UIButton!
@@ -25,7 +28,7 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var Ros = Roster()
     
     var roster = [[String](),[String]()]
-    
+    var pw = " "
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let viewContainer = UIView(frame: CGRect(x:0, y:0, width: rosterView.frame.width, height: 40))
@@ -69,24 +72,35 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            if indexPath.section == 0 {
-                // IH
-                Ros.IH.remove(at: indexPath.row)
-                Ros.removeFromIH(name: roster[indexPath.section][indexPath.row])
+            if pw == "WUWU" {
+                if indexPath.section == 0 {
+                    // IH
+                    Ros.IH.remove(at: indexPath.row)
+                    Ros.removeFromIH(name: roster[indexPath.section][indexPath.row])
+                }
+                else{
+                    // Loca
+                    Ros.Loca.remove(at: indexPath.row)
+                    Ros.removeFromLoca(name: roster[indexPath.section][indexPath.row])
+                }
+                roster[indexPath.section].remove(at: indexPath.row)
+                self.rosterView.reloadData()
             }
             else{
-                // Loca
-                Ros.Loca.remove(at: indexPath.row)
-                Ros.removeFromLoca(name: roster[indexPath.section][indexPath.row])
+                pwView.isHidden = false
+                errorBar.isHidden = true
             }
-            roster[indexPath.section].remove(at: indexPath.row)
-            self.rosterView.reloadData()
+            
+            
+            
+           
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.rosterView.delegate = self
         self.rosterView.dataSource = self
+        pwView.isHidden = true
         search.isHidden = true
         Ros.fetchDataIH { result in
             IHRoster = result
@@ -112,49 +126,76 @@ class RosterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func addIHPressed(_ sender: Any) {
-        if (search.isHidden == true){
-            search.isHidden = false
-            
-        }
-        else{
-            if let name = search.text {
-                Ros.IH.append(name)
-                Ros.addToIH(name: name)
-                roster = [Ros.IH, Ros.Loca]
+        if pw == "WUWU" {
+            if (search.isHidden == true){
+                search.isHidden = false
+                
             }
-            
-            self.rosterView.reloadData()
-            
-            search.text = ""
-            search.isHidden = true
+            else{
+                if let name = search.text {
+                    Ros.IH.append(name)
+                    Ros.addToIH(name: name)
+                    roster = [Ros.IH, Ros.Loca]
+                }
+                
+                self.rosterView.reloadData()
+                
+                search.text = ""
+                search.isHidden = true
+            }
         }
+        
+        else{
+            pwView.isHidden = false
+            errorBar.isHidden = true
+        }
+       
         
     }
     
     
     @IBAction func addLocaPressed(_ sender: Any) {
-        if (search.isHidden == true){
-            search.isHidden = false
-            
+        
+        if pw == "WUWU" {
+            if (search.isHidden == true){
+                search.isHidden = false
+                
+            }
+            else{
+                if let name = search.text {
+                    Ros.Loca.append(name)
+                    Ros.addToLoca(name: name)
+                    roster = [Ros.IH, Ros.Loca]
+                }
+                
+                    self.rosterView.reloadData()
+                
+
+                search.text = ""
+                search.isHidden = true
+
+            }
         }
         else{
-            if let name = search.text {
-                Ros.Loca.append(name)
-                Ros.addToLoca(name: name)
-                roster = [Ros.IH, Ros.Loca]
-            }
-            
-                self.rosterView.reloadData()
-            
-
-            search.text = ""
-            search.isHidden = true
-
+            pwView.isHidden = false
+            errorBar.isHidden = true
         }
+        
        
     }
     
-
+    
+    @IBAction func donePressed(_ sender: Any) {
+        if pwEntry.text == "WUWU" {
+            pw = "WUWU"
+            pwView.isHidden = true
+        }
+        else{
+            errorBar.isHidden = false
+        }
+        
+    }
+    
    
     
     /*

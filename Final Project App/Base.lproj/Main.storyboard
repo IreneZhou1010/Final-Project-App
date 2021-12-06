@@ -53,6 +53,40 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tQ5-F3-0cJ">
+                                <rect key="frame" x="0.0" y="88" width="390" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" fixedFrame="YES" text=" " translatesAutoresizingMaskIntoConstraints="NO" id="Vww-3m-lJB">
+                                        <rect key="frame" x="8" y="36" width="374" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password please" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYc-t2-Eui">
+                                        <rect key="frame" x="110" y="8" width="128" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="elA-oR-45C">
+                                        <rect key="frame" x="300" y="87" width="37" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="donePressed:" destination="Gtx-Xr-Ga2" eventType="touchUpInside" id="g60-Je-JZK"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WRONG. Please try again" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QC4-Xv-XS8">
+                                        <rect key="frame" x="77" y="96" width="194" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <color key="highlightedColor" systemColor="systemRedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Go7-cS-f3A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -61,6 +95,9 @@
                     <connections>
                         <outlet property="addIH" destination="zIB-gq-6hI" id="BC9-hY-8nJ"/>
                         <outlet property="addLoca" destination="bYc-nN-uql" id="irF-2i-5UD"/>
+                        <outlet property="errorBar" destination="QC4-Xv-XS8" id="obW-tz-n9V"/>
+                        <outlet property="pwEntry" destination="Vww-3m-lJB" id="LUp-wU-Hg5"/>
+                        <outlet property="pwView" destination="tQ5-F3-0cJ" id="pwG-wK-3Hp"/>
                         <outlet property="rosterView" destination="LNE-IS-NrW" id="zys-Sc-UBW"/>
                         <outlet property="search" destination="w4y-BV-lwz" id="gCZ-wo-NqB"/>
                     </connections>
@@ -133,7 +170,6 @@
         <!--Navigation Controller-->
         <scene sceneID="u6z-6r-nqD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RQ8-Fq-FaZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="buM-3Y-L9U" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="yeC-ER-ibC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yhq-SL-YBF">
@@ -144,6 +180,7 @@
                         <segue destination="H1i-fF-eq4" kind="relationship" relationship="rootViewController" id="kM8-Xk-AOZ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RQ8-Fq-FaZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-360" y="1364"/>
         </scene>
@@ -1071,6 +1108,9 @@
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -1082,6 +1122,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
